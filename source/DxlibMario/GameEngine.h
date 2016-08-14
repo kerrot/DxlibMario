@@ -3,11 +3,8 @@
 class GameEngine {
 public:
 	static GameEngine* getInstance( );
-	virtual ~GameEngine( );
+	~GameEngine( );
 private:
 	GameEngine( );
-
-
 	static GameEngine* _instance;
 };
-

@@ -1,13 +1,14 @@
 #include "GameEngine.h"
 
+GameEngine* GameEngine::_instance;
 
-GameEngine::GameEngine()
-{
+
+GameEngine::GameEngine( ) {
+
 }
 
 
-GameEngine::~GameEngine()
-{
+GameEngine::~GameEngine( ) {
 	delete _instance;
 }
 
