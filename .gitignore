@@ -28,3 +28,10 @@
 *.out
 *.app
 bin/Log.txt
+/source/ThirdParty/DxLib_VC
+/bin/*.ilk
+/bin/*.pdb
+/source/.vs/DxlibMario/v14/*.suo
+/source/*.db
+/source/DxlibMario/Debug
+/source/DxlibMario/*.user
