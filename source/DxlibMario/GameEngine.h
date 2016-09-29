@@ -4,6 +4,7 @@
 
 PTR( GameEngine );
 PTR( Renderer );
+PTR( Process );
 PTR( Input );
 PTR( Sprite );
 PTR( GameObject );
@@ -18,6 +19,7 @@ public:
 
 	RendererPtr GetRenderer();
 	InputPtr GetInput();
+	ProcessPtr GetProcess();
 
 	void Run();
 private:
@@ -30,6 +32,7 @@ private:
 
 	RendererPtr _renderer;
 	InputPtr _input;
+	ProcessPtr _process;
 	std::map<const char*, SpritePtr> _sprites;
 	std::map<int, GameObjectPtr> _objects;
 };

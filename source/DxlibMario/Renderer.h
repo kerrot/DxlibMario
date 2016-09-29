@@ -1,6 +1,7 @@
 #pragma once
 #include "smart_ptr.h"
-#include "mathmatics.h"
+
+struct Vector;
 
 PTR( Renderer );
 PTR( Sprite );

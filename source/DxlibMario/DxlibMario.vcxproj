@@ -88,12 +88,14 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DxlibInput.cpp" />
+    <ClCompile Include="DxlibProcess.cpp" />
     <ClCompile Include="DxlibRenderer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Process.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -101,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="DxlibInput.h" />
+    <ClInclude Include="DxlibProcess.h" />
     <ClInclude Include="DxlibRenderer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEngine.h" />
@@ -108,6 +111,7 @@
     <ClInclude Include="GameObjectHelper.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="mathmatics.h" />
+    <ClInclude Include="Process.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="smart_ptr.h" />
     <ClInclude Include="Sprite.h" />

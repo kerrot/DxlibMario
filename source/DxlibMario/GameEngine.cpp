@@ -4,14 +4,17 @@
 #include "DxlibRenderer.h"
 #include "Input.h"
 #include "DxlibInput.h"
+#include "Process.h"
+#include "DxlibProcess.h"
 #include "GameObject.h"
 
 GameEnginePtr GameEngine::_instance;
 
 
 GameEngine::GameEngine( ) 
-: _renderer(DxlibRendererPtr(new DxlibRenderer()))
-, _input(DxlibInputPtr(new DxlibInput())) {
+: _renderer(DxlibRendererPtr(new DxlibRenderer))
+, _input(DxlibInputPtr(new DxlibInput)) 
+, _process(DxlibProcessPtr(new DxlibProcess)){
 	
 }
 
@@ -58,8 +61,13 @@ InputPtr GameEngine::GetInput() {
 	return _input;
 }
 
+
+ProcessPtr GameEngine::GetProcess() {
+	return _process;
+}
+
 void GameEngine::Run() {
-	while(!_input->GetKey("ESC")) {
+	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
 		_input->UpdateKey();
 
 		UpdateObject();

@@ -1,6 +1,7 @@
 #include "DxlibRenderer.h"
 #include "DxLib.h"
 #include "Sprite.h"
+#include "mathmatics.h"
 
 DxlibRenderer::DxlibRenderer() {
 	DxLib_Init();
