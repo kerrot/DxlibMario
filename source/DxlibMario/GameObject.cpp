@@ -16,12 +16,8 @@ int GameObject::GetGuid() const {
 	return _guid;
 }
 
-const std::list<ComponentPtr>& GameObject::GetComponents() const {
-	return _components;
-}
-
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
-	SpriteRendererPtr tmp = SpriteRendererPtr( new SpriteRenderer(shared_from_this( )));
+	SpriteRendererPtr tmp = SpriteRendererPtr( new SpriteRenderer(shared_from_this()));
 	_components.push_back(tmp);
 
 	return tmp;
@@ -38,6 +34,15 @@ void GameObject::Update() {
 	
 }
 
+void GameObject::LastUpdate() {
+	
+}
+
 Vector GameObject::GetGlobalPosition() const {
 	return _globalPosition;
+}
+
+void GameObject::AddBehavior(BehaviorPtr ptr) {
+	//_components.push_back(ptr);
+	_behaviours.push_back(ptr);
 }

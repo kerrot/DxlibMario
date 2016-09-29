@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DxlibInput.cpp" />
     <ClCompile Include="DxlibProcess.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Behavior.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DxlibInput.h" />
     <ClInclude Include="DxlibProcess.h" />
