@@ -1,12 +1,9 @@
 #include "DxlibRenderer.h"
 #include "DxLib.h"
-
+#include "Sprite.h"
 
 DxlibRenderer::DxlibRenderer() {
-	if (DxLib_Init() == -1)        // ＤＸライブラリ初期化処理
-	{
-		return;        // エラーが起きたら直ちに終了
-	}
+	DxLib_Init();
 }
 
 
@@ -22,6 +19,10 @@ int DxlibRenderer::SetResolution(int SizeX, int SizeY) {
 	return SetGraphMode(SizeX, SizeY, 32);
 }
 
-int DxlibRenderer::LoadGraph(const char* filename) {
+int DxlibRenderer::LoadSprite(const char* filename) {
 	return LoadGraph(filename);
+}
+
+void DxlibRenderer::RenderSprite(Vector pos, SpritePtr sprite) {
+	DrawGraph( (int)pos.x , (int)pos.y , sprite->GetNum() , sprite->IsTransparent() ? TRUE : FALSE ) ;
 }

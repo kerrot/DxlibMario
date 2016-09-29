@@ -2,13 +2,17 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "DxlibRenderer.h"
+#include "Input.h"
+#include "DxlibInput.h"
 #include "GameObject.h"
 
 GameEnginePtr GameEngine::_instance;
 
 
-GameEngine::GameEngine( ) {
-
+GameEngine::GameEngine( ) 
+: _renderer(DxlibRendererPtr(new DxlibRenderer()))
+, _input(DxlibInputPtr(new DxlibInput())) {
+	
 }
 
 
@@ -24,7 +28,7 @@ SpritePtr GameEngine::LoadSprite(const char * filename)
 		return iter->second;
 	}
 
-	SpritePtr tmp = SpritePtr(new Sprite(filename, _renderer->LoadGraph(filename)));
+	SpritePtr tmp = SpritePtr(new Sprite(_renderer->LoadSprite(filename)));
 	_sprites[filename] = tmp;
 
 	return tmp;
@@ -44,4 +48,35 @@ GameEnginePtr GameEngine::GetInstance( ) {
 	}
 
 	return _instance;
+}
+
+RendererPtr GameEngine::GetRenderer() {
+	return _renderer;
+}
+
+InputPtr GameEngine::GetInput() {
+	return _input;
+}
+
+void GameEngine::Run() {
+	while(!_input->GetKey("ESC")) {
+		_input->UpdateKey();
+
+		UpdateObject();
+		RenderObject();
+	}
+}
+
+void GameEngine::UpdateObject() {
+	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
+		iter != _objects.end(); ++iter ) {
+		iter->second->Update();
+	}
+}
+
+void GameEngine::RenderObject() {
+	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
+		iter != _objects.end(); ++iter ) {
+		iter->second->Render();
+	}
 }

@@ -7,15 +7,20 @@ PTR( GameObject );
 PTR( Component );
 PTR( SpriteRenderer );
 
-class GameObject {
+class GameObject : public std::enable_shared_from_this < GameObject > {
 	friend class GameEngine;
 public:
 	virtual ~GameObject();
 	
 	int GetGuid() const;
 
+	void Render();
+	void Update();
+
 	const std::list<ComponentPtr>& GetComponents() const;
 	SpriteRendererPtr AddSpriteRenderer();
+
+	Vector GetGlobalPosition() const;
 
 private:
 	GameObject();

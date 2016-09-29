@@ -7,9 +7,12 @@ class Sprite {
 friend class GameEngine;
 public:
 	virtual ~Sprite();
-private:
-	Sprite(const char* fileName, int num);
 
-	const char* _fileName;
-	const int _num;
+	int GetNum() const; 
+	bool IsTransparent() const;
+private:
+	Sprite(int num);
+
+	int _num;
+	bool _transparent;
 };

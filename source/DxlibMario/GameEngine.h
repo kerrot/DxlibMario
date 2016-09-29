@@ -4,6 +4,7 @@
 
 PTR( GameEngine );
 PTR( Renderer );
+PTR( Input );
 PTR( Sprite );
 PTR( GameObject );
 
@@ -14,14 +15,23 @@ public:
 
 	SpritePtr LoadSprite(const char* filename);
 	GameObjectPtr CreateGameObject();
+
+	RendererPtr GetRenderer();
+	InputPtr GetInput();
+
+	void Run();
 private:
 	GameEngine();
-	static GameEnginePtr _instance;
+	void UpdateObject();
+	void RenderObject();
 
 private:
+	static GameEnginePtr _instance;
+
 	RendererPtr _renderer;
+	InputPtr _input;
 	std::map<const char*, SpritePtr> _sprites;
 	std::map<int, GameObjectPtr> _objects;
 };
 
-#define sGame GameEngine::GetInstance()
+#define sGameEngine GameEngine::GetInstance()

@@ -11,7 +11,8 @@ public:
 
 	virtual void SetFullWindow(bool set);
 	virtual int SetResolution(int SizeX, int SizeY);
-	virtual int LoadGraph(const char* filename);
+	virtual int LoadSprite(const char* filename);
+	virtual void RenderSprite(Vector pos, SpritePtr sprite);
 private:
 	DxlibRenderer();
 };

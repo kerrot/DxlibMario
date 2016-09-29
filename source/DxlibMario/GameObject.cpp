@@ -21,8 +21,23 @@ const std::list<ComponentPtr>& GameObject::GetComponents() const {
 }
 
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
-	SpriteRendererPtr tmp = SpriteRendererPtr( new SpriteRenderer());
+	SpriteRendererPtr tmp = SpriteRendererPtr( new SpriteRenderer(shared_from_this( )));
 	_components.push_back(tmp);
 
 	return tmp;
+}
+
+void GameObject::Render() {
+	for (std::list<ComponentPtr>::const_iterator iter = _components.begin();
+		iter != _components.end(); ++iter) {
+		(*iter)->Render();
+	}
+}
+
+void GameObject::Update() {
+	
+}
+
+Vector GameObject::GetGlobalPosition() const {
+	return _globalPosition;
 }
