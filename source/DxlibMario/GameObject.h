@@ -2,6 +2,7 @@
 #include "smart_ptr.h"
 #include "mathmatics.h"
 #include <list>
+#include <map>
 
 PTR( GameObject );
 PTR( Component );
@@ -25,6 +26,8 @@ public:
 	SpriteRendererPtr AddSpriteRenderer();
 	void AddBehavior(BehaviorPtr ptr);
 
+	void SetParent(GameObjectPtr obj);
+
 	void SetGlobalPosition(const Vector& pos);
 	void SetlocalPosition(const Vector& pos);
 
@@ -38,7 +41,7 @@ protected:
 	Vector _globalPosition;
 
 	GameObjectPtr _parent;
-	std::list<GameObjectPtr> _children;
+	std::map<int, GameObjectPtr> _children;
 	std::list<ComponentPtr> _components;
 	std::list<BehaviorPtr> _behaviours;	
 

@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "Behavior.h"
+#include "GameObjectHelper.h"
 
 int GameObject::guid = 0;
 
@@ -64,10 +65,37 @@ void GameObject::AddBehavior(BehaviorPtr ptr) {
 	_behaviours.push_back(ptr);
 }
 
+void GameObject::SetParent(GameObjectPtr obj) {
+	_parent = obj;
+
+	GameObjectHelper::AddToGameObjectChildren(obj, shared_from_this());
+
+	Vector parentPos = (obj == 0) ? Vector() : obj->GetGlobalPosition();
+	_localPosition = _globalPosition - parentPos;
+}
+
 void GameObject::SetGlobalPosition(const Vector& pos) {
+	Vector parentPos = (_parent == 0) ? Vector() : _parent->GetGlobalPosition();
+	_localPosition = pos - parentPos;
+
+	for(std::map<int, GameObjectPtr>::iterator iter = _children.begin();
+		iter != _children.end(); ++iter)
+	{
+		iter->second->SetGlobalPosition(pos - _globalPosition + iter->second->GetGlobalPosition());
+	}
+
 	_globalPosition = pos;
 }
 
 void GameObject::SetlocalPosition(const Vector& pos) {
+	Vector parentPos = (_parent == 0) ? Vector() : _parent->GetGlobalPosition();
+	_globalPosition = parentPos + pos;
+
+	for (std::map<int, GameObjectPtr>::iterator iter = _children.begin();
+		iter != _children.end(); ++iter)
+	{
+		iter->second->SetGlobalPosition(pos - _localPosition + iter->second->GetGlobalPosition());
+	}
+
 	_localPosition = pos;
 }
