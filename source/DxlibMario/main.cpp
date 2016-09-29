@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 #include "GameObject.h"
+#include "GameObjectHelper.h"
 #include<windows.h>
 
 
@@ -7,7 +8,12 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
              LPSTR lpCmdLine, int nCmdShow )
 {
 	GameObjectPtr tmp = sGame->CreateGameObject();
-	//tmp->GetComponent<SpriteRenderer, SpriteRendererPtr>();
+	tmp->AddSpriteRenderer();
+	SpriteRendererPtr p =  GetGameObjectComponent<SpriteRenderer>(tmp);
+	if (p)
+	{
+		return 0;
+	}
 
  //   int GHandle ;
 	//ChangeWindowMode(TRUE);

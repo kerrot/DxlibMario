@@ -35,3 +35,4 @@ bin/Log.txt
 /source/*.db
 /source/DxlibMario/Debug
 /source/DxlibMario/*.user
+*.suo

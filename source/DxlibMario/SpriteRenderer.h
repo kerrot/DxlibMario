@@ -5,8 +5,10 @@
 PTR (SpriteRenderer)
 
 class SpriteRenderer : public Component {
+	friend class GameObject;
 public:
-	SpriteRenderer();
 	virtual ~SpriteRenderer();
+private:
+	SpriteRenderer();
 };
 
