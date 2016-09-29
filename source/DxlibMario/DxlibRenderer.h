@@ -13,6 +13,9 @@ public:
 	virtual int SetResolution(int SizeX, int SizeY);
 	virtual int LoadSprite(const char* filename);
 	virtual void RenderSprite(Vector pos, SpritePtr sprite);
+
+	virtual void Clear();
+	virtual void Flip();
 private:
 	DxlibRenderer();
 };

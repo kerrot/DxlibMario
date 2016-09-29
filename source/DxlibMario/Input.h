@@ -14,6 +14,7 @@ public:
 
 	virtual void UpdateKey() = 0;
 
+	static InputPtr GetInstance();
 
 protected:
 	Input();
@@ -25,3 +26,5 @@ protected:
 	
 	KEYS _state;
 };
+
+#define sInput Input::GetInstance()

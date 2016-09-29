@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "Renderer.h"
+#include "Camera.h"
+#include "CameraControl.h"
 
 GamePtr Game::_instance;
 
@@ -31,6 +33,8 @@ void Game::Init() {
 	GameObjectPtr obj = sGameEngine->CreateGameObject();
 	SpriteRendererPtr sprite = obj->AddSpriteRenderer();
 	sprite->SetSprite(sGameEngine->LoadSprite("Resources/test1.bmp"));
+
+	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));
 }
 
 void Game::Run() {

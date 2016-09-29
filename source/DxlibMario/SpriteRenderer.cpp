@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 SpriteRenderer::SpriteRenderer(GameObjectPtr obj) 
 : Component(obj) {
@@ -20,5 +21,5 @@ SpritePtr SpriteRenderer::GetSprite() const {
 }
 
 void SpriteRenderer::Render() {
-	sRenderer->RenderSprite(_gameobject->GetGlobalPosition() , _sprite);
+	sRenderer->RenderSprite(_gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition(), _sprite);
 }

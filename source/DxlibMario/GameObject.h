@@ -25,10 +25,13 @@ public:
 	SpriteRendererPtr AddSpriteRenderer();
 	void AddBehavior(BehaviorPtr ptr);
 
+	void SetGlobalPosition(const Vector& pos);
+	void SetlocalPosition(const Vector& pos);
 
 	Vector GetGlobalPosition() const;
+	Vector GetLocalPosition() const;
 
-private:
+protected:
 	GameObject();
 
 	Vector _localPosition;

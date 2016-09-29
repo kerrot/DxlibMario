@@ -1,4 +1,9 @@
 #include "Input.h"
+#include "GameEngine.h"
+
+InputPtr Input::GetInstance() {
+	return sGameEngine->GetInput();
+}
 
 Input::Input() {
 }

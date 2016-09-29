@@ -27,3 +27,11 @@ int DxlibRenderer::LoadSprite(const char* filename) {
 void DxlibRenderer::RenderSprite(Vector pos, SpritePtr sprite) {
 	DrawGraph( (int)pos.x , (int)pos.y , sprite->GetNum() , sprite->IsTransparent() ? TRUE : FALSE ) ;
 }
+
+void DxlibRenderer::Clear() {
+	ClearDrawScreen();
+}
+
+void DxlibRenderer::Flip() {
+	ScreenFlip();
+}

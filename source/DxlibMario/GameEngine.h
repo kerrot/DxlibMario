@@ -8,6 +8,7 @@ PTR( Process );
 PTR( Input );
 PTR( Sprite );
 PTR( GameObject );
+PTR( Camera );
 
 class GameEngine {
 public:
@@ -15,11 +16,15 @@ public:
 	virtual ~GameEngine();
 
 	SpritePtr LoadSprite(const char* filename);
+
 	GameObjectPtr CreateGameObject();
+	CameraPtr CreateCamera();
 
 	RendererPtr GetRenderer();
 	InputPtr GetInput();
 	ProcessPtr GetProcess();
+
+	CameraPtr GetMainCamera();
 
 	void Run();
 private:
@@ -33,6 +38,7 @@ private:
 	RendererPtr _renderer;
 	InputPtr _input;
 	ProcessPtr _process;
+	CameraPtr _mainCamera;
 	std::map<const char*, SpritePtr> _sprites;
 	std::map<int, GameObjectPtr> _objects;
 };

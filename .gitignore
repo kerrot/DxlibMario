@@ -38,3 +38,4 @@ bin/Log.txt
 *.suo
 *.opensdf
 *.sdf
+/source/*.opendb

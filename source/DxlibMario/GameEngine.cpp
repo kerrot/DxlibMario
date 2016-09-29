@@ -7,6 +7,7 @@
 #include "Process.h"
 #include "DxlibProcess.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 GameEnginePtr GameEngine::_instance;
 
@@ -15,7 +16,7 @@ GameEngine::GameEngine( )
 : _renderer(DxlibRendererPtr(new DxlibRenderer))
 , _input(DxlibInputPtr(new DxlibInput)) 
 , _process(DxlibProcessPtr(new DxlibProcess)){
-	
+	CreateCamera();
 }
 
 
@@ -44,6 +45,17 @@ GameObjectPtr GameEngine::CreateGameObject() {
 	return tmp;
 }
 
+CameraPtr GameEngine::CreateCamera() {
+	CameraPtr tmp = CameraPtr(new Camera());
+	_objects[tmp->GetGuid()] = tmp;
+
+	if (!_mainCamera)
+	{
+		_mainCamera = tmp;
+	}
+
+	return tmp;
+}
 
 GameEnginePtr GameEngine::GetInstance( ) {
 	if ( !_instance ) {
@@ -66,12 +78,21 @@ ProcessPtr GameEngine::GetProcess() {
 	return _process;
 }
 
+CameraPtr GameEngine::GetMainCamera() {
+	return _mainCamera;
+}
+
 void GameEngine::Run() {
 	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
 		_input->UpdateKey();
 
 		UpdateObject();
+
+		_renderer->Clear();
+
 		RenderObject();
+
+		_renderer->Flip();
 	}
 }
 
@@ -79,6 +100,11 @@ void GameEngine::UpdateObject() {
 	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
 		iter != _objects.end(); ++iter ) {
 		iter->second->Update();
+	}
+
+	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
+		iter != _objects.end(); ++iter) {
+		iter->second->LastUpdate();
 	}
 }
 
