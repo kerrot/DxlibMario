@@ -6,7 +6,7 @@
 #include "GameEngine.h"
 
 SpriteRenderer::SpriteRenderer(GameObjectPtr obj) 
-: Component(obj)  {
+: Component(obj) {
 }
 
 
@@ -15,6 +15,9 @@ SpriteRenderer::~SpriteRenderer() {
 
 void SpriteRenderer::SetSprite(SpritePtr sprite) {
 	_sprite = sprite; 
+
+	_range._right = _sprite->GetWidth();
+	_range._down = _sprite->GetHeight();
 }
 
 SpritePtr SpriteRenderer::GetSprite() const {
@@ -32,16 +35,19 @@ int SpriteRenderer::GetLayer() const {
 	return _layer;
 }
 
+const Rect & SpriteRenderer::GetRect() const {
+	return _range;
+}
+
+void SpriteRenderer::SetDrawRect(const Rect & rect) {
+	_range = rect;
+}
+
 void SpriteRenderer::RenderSprite() {
 	if (!_sprite)
 	{
 		return;
 	}
 
-	if (_sprite->IsPartOnly()) {
-		sRenderer->RenderRectSprite(_gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition(), _sprite);
-	}
-	else {
-		sRenderer->RenderSprite(_gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition(), _sprite);
-	}
+	sRenderer->RenderRectSprite(_gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition(), _range, _sprite);
 }

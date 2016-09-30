@@ -29,10 +29,13 @@ void DxlibRenderer::RenderSprite(const Vector& pos, SpritePtr sprite) {
 	DrawGraph( (int)pos.x , (int)pos.y , sprite->GetNum() , sprite->IsTransparent() ? TRUE : FALSE ) ;
 }
 
-void DxlibRenderer::RenderRectSprite(const Vector& pos, SpritePtr sprite) {
-	const Rect& rect = sprite->GetRect();
+void DxlibRenderer::RenderRectSprite(const Vector& pos, const Rect& rect, SpritePtr sprite) {	
 	DrawRectGraph((int)pos.x, (int)pos.y, rect._left, rect._up, rect._right - rect._left, rect._down - rect._up, 
 		sprite->GetNum(), sprite->IsTransparent() ? TRUE : FALSE, FALSE);
+}
+
+void DxlibRenderer::GetSpriteSize(int num, int* width, int* height) {
+	GetGraphSize(num, width, height);
 }
 
 void DxlibRenderer::Clear() {

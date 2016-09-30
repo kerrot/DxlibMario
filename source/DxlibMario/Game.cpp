@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "CameraControl.h"
+#include "RigidBody2D.h"
 
 GamePtr Game::_instance;
 
@@ -41,11 +42,13 @@ void Game::Init() {
 	//mario
 	obj = sGameEngine->CreateGameObject();
 	obj->SetGlobalPosition(Vector(0, 170));
-	obj->AddRigidBody2D();
+	RigidBody2DPtr rigid = obj->AddRigidBody2D();
+	rigid->SetGravity(Vector(0, 1));
 	spriteRenderer = obj->AddSpriteRenderer();
+	
 	sprite = sGameEngine->LoadSprite("Resources/player0.png");
-	sprite->SetDrawRect(Rect(16, 16));
 	spriteRenderer->SetSprite(sprite);
+	spriteRenderer->SetDrawRect(Rect(16, 16));
 
 	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));
 }

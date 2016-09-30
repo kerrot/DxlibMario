@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "smart_ptr.h"
+#include "Common.h"
 
 PTR ( SpriteRenderer )
 PTR ( Sprite )
@@ -18,11 +19,16 @@ public:
 	void SetLayer(int layer);
 	int GetLayer() const;
 
+	const Rect& GetRect() const;
+	void SetDrawRect(const Rect & rect);
+
 private:
 	SpriteRenderer(GameObjectPtr obj);
 
 	SpritePtr _sprite;
+	Rect _range;
 
+	bool _partOnly;
 	int _layer;
 };
 

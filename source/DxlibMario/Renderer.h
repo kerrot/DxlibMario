@@ -16,7 +16,8 @@ public:
 	
 	virtual int LoadSprite(const char* filename) = 0;
 	virtual void RenderSprite(const Vector& pos, SpritePtr sprite) = 0;
-	virtual void RenderRectSprite(const Vector& pos, SpritePtr sprite) = 0;
+	virtual void RenderRectSprite(const Vector& pos, const Rect& rect, SpritePtr sprite) = 0;
+	virtual void GetSpriteSize(int num, int* width, int* height) = 0;
 
 	virtual void Clear() = 0;
 	virtual void Flip() = 0;

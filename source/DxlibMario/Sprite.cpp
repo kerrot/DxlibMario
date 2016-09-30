@@ -1,9 +1,10 @@
 #include "Sprite.h"
 
-Sprite::Sprite(int num) 
+Sprite::Sprite(int num, unsigned int width, unsigned int height)
 : _num(num)
-,_transparent(true)
-,_partOnly(false){
+,_width(width)
+,_height(height)
+,_transparent(true) {
 
 }
 
@@ -15,19 +16,14 @@ int Sprite::GetNum() const {
 	return _num;
 }
 
-const Rect & Sprite::GetRect() const {
-	return _range;
+unsigned int Sprite::GetWidth() const {
+	return _width;
+}
+
+unsigned int Sprite::GetHeight() const {
+	return _height;
 }
 
 bool Sprite::IsTransparent() const {
 	return _transparent;
-}
-
-bool Sprite::IsPartOnly() const {
-	return _partOnly;
-}
-
-void Sprite::SetDrawRect(const Rect & rect) {
-	_partOnly = true;
-	_range = rect;
 }

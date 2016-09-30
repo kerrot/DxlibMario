@@ -10,8 +10,12 @@ public:
 	virtual ~RigidBody2D();
 
 	void Update();
+	void SetGravity(const Vector& g);
+
 private:
 	RigidBody2D(GameObjectPtr obj);
+
+	int _drag;
 
 	Vector _gravity;
 	Vector _velocity;

@@ -33,7 +33,12 @@ SpritePtr GameEngine::LoadSprite(const char * filename)
 		return iter->second;
 	}
 
-	SpritePtr tmp = SpritePtr(new Sprite(_renderer->LoadSprite(filename)));
+	int num = _renderer->LoadSprite(filename);
+	int width;
+	int height;
+	_renderer->GetSpriteSize(num, &width, &height);
+
+	SpritePtr tmp = SpritePtr(new Sprite(num, width, height));
 	_sprites[filename] = tmp;
 
 	return tmp;

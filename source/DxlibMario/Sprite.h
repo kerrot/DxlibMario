@@ -10,18 +10,17 @@ public:
 	virtual ~Sprite();
 
 	int GetNum() const; 
-	const Rect& GetRect() const;
+
+	unsigned int GetWidth() const;
+	unsigned int GetHeight() const;
 
 	bool IsTransparent() const;
-	bool IsPartOnly() const;
-
-	void SetDrawRect(const Rect& rect);
 private:
-	Sprite(int num);
+	Sprite(int num, unsigned int width, unsigned int height);
 
 	int _num;
 	bool _transparent;
-	bool _partOnly;
-
-	Rect _range;
+	
+	unsigned int _width;
+	unsigned int _height;
 };
