@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
+#include "RigidBody2D.h"
 #include "Behavior.h"
 #include "GameObjectHelper.h"
 
@@ -16,6 +17,17 @@ GameObject::~GameObject() {
 
 int GameObject::GetGuid() const {
 	return _guid;
+}
+
+RigidBody2DPtr GameObject::AddRigidBody2D() {
+	if (!_rigidBody2D)
+	{
+		RigidBody2DPtr tmp = RigidBody2DPtr(new RigidBody2D(shared_from_this()));
+		_components.push_back(tmp);
+		_rigidBody2D = tmp;
+	}
+
+	return _rigidBody2D;
 }
 
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
@@ -40,6 +52,10 @@ void GameObject::Render() {
 }
 
 void GameObject::Update() {
+	if (_rigidBody2D) {
+		_rigidBody2D->Update();
+	}
+
 	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
 		iter != _behaviours.end(); ++iter) {
 		if ((*iter)->IsEnabled()) {

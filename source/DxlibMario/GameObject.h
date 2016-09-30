@@ -8,6 +8,7 @@ PTR( GameObject );
 PTR( Component );
 PTR( Behavior );
 PTR( SpriteRenderer );
+PTR( RigidBody2D );
 
 class GameObject : public std::enable_shared_from_this < GameObject > {
 friend class GameEngine;
@@ -23,6 +24,7 @@ public:
 	void LastUpdate();
 
 	
+	RigidBody2DPtr AddRigidBody2D();
 	SpriteRendererPtr AddSpriteRenderer();
 	void AddBehavior(BehaviorPtr ptr);
 
@@ -49,6 +51,7 @@ protected:
 	static int guid;
 
 	SpriteRendererPtr _spriteRenderer;
+	RigidBody2DPtr _rigidBody2D;
 };
 
 

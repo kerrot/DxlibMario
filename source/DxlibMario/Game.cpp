@@ -41,6 +41,7 @@ void Game::Init() {
 	//mario
 	obj = sGameEngine->CreateGameObject();
 	obj->SetGlobalPosition(Vector(0, 170));
+	obj->AddRigidBody2D();
 	spriteRenderer = obj->AddSpriteRenderer();
 	sprite = sGameEngine->LoadSprite("Resources/player0.png");
 	sprite->SetDrawRect(Rect(16, 16));
