@@ -16,3 +16,7 @@ void Component::Render() {
 bool Component::IsEnabled() const {
 	return _enabled;
 }
+
+GameObjectPtr Component::GetGameObject() {
+	return _gameobject;
+}

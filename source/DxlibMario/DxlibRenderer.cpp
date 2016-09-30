@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "Sprite.h"
 #include "mathmatics.h"
+#include "Common.h"
 
 DxlibRenderer::DxlibRenderer() {
 	DxLib_Init();
@@ -24,8 +25,14 @@ int DxlibRenderer::LoadSprite(const char* filename) {
 	return LoadGraph(filename);
 }
 
-void DxlibRenderer::RenderSprite(Vector pos, SpritePtr sprite) {
+void DxlibRenderer::RenderSprite(const Vector& pos, SpritePtr sprite) {
 	DrawGraph( (int)pos.x , (int)pos.y , sprite->GetNum() , sprite->IsTransparent() ? TRUE : FALSE ) ;
+}
+
+void DxlibRenderer::RenderRectSprite(const Vector& pos, SpritePtr sprite) {
+	const Rect& rect = sprite->GetRect();
+	DrawRectGraph((int)pos.x, (int)pos.y, rect._left, rect._up, rect._right - rect._left, rect._down - rect._up, 
+		sprite->GetNum(), sprite->IsTransparent() ? TRUE : FALSE, FALSE);
 }
 
 void DxlibRenderer::Clear() {

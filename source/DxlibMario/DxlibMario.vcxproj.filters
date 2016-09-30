@@ -47,6 +47,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="RigidBody2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behavior.h">
@@ -102,6 +103,10 @@
     </ClInclude>
     <ClInclude Include="CameraControl.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody2D.h" />
+    <ClInclude Include="Common.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

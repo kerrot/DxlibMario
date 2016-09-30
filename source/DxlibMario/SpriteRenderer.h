@@ -10,14 +10,19 @@ class SpriteRenderer : public Component {
 public:
 	virtual ~SpriteRenderer();
 
-	virtual void Render();
+	void RenderSprite();
 
 	void SetSprite(SpritePtr sprite);
 	SpritePtr GetSprite() const;
+
+	void SetLayer(int layer);
+	int GetLayer() const;
 
 private:
 	SpriteRenderer(GameObjectPtr obj);
 
 	SpritePtr _sprite;
+
+	int _layer;
 };
 

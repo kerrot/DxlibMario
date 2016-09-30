@@ -8,6 +8,7 @@
 #include "DxlibProcess.h"
 #include "GameObject.h"
 #include "Camera.h"
+#include "SpriteRenderer.h"
 
 GameEnginePtr GameEngine::_instance;
 
@@ -82,6 +83,22 @@ CameraPtr GameEngine::GetMainCamera() {
 	return _mainCamera;
 }
 
+void GameEngine::SetLayer(int layer, SpriteRendererPtr renderer) {
+	if (!renderer) {
+		return;
+	}
+
+	int guid = renderer->GetGameObject()->GetGuid();
+	SpriteMap& map = _layerSprite[renderer->GetLayer()];
+	SpriteMap::iterator iter = map.find(guid);
+	if (iter != map.end())
+	{
+		map.erase(iter);
+	}
+
+	_layerSprite[layer][guid] = renderer;
+}
+
 void GameEngine::Run() {
 	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
 		_input->UpdateKey();
@@ -112,5 +129,19 @@ void GameEngine::RenderObject() {
 	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
 		iter != _objects.end(); ++iter ) {
 		iter->second->Render();
+	}
+
+	RenderSprite();
+}
+
+void GameEngine::RenderSprite() {
+	for (std::map<int, SpriteMap>::iterator iter = _layerSprite.begin();
+		iter != _layerSprite.end(); ++iter) {
+		
+		for (SpriteMap::iterator spriteIter = iter->second.begin();
+			spriteIter != iter->second.end(); ++spriteIter) {
+
+			spriteIter->second->RenderSprite();
+		}
 	}
 }

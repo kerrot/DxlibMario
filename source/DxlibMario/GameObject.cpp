@@ -19,10 +19,15 @@ int GameObject::GetGuid() const {
 }
 
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
-	SpriteRendererPtr tmp = SpriteRendererPtr( new SpriteRenderer(shared_from_this()));
-	_components.push_back(tmp);
+	if (!_spriteRenderer)
+	{
+		SpriteRendererPtr tmp = SpriteRendererPtr(new SpriteRenderer(shared_from_this()));
+		_components.push_back(tmp);
+		_spriteRenderer = tmp;
+		_spriteRenderer->SetLayer(0);
+	}
 
-	return tmp;
+	return _spriteRenderer;
 }
 
 void GameObject::Render() {

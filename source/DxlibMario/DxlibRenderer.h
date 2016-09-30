@@ -12,7 +12,8 @@ public:
 	virtual void SetFullWindow(bool set);
 	virtual int SetResolution(int SizeX, int SizeY);
 	virtual int LoadSprite(const char* filename);
-	virtual void RenderSprite(Vector pos, SpritePtr sprite);
+	virtual void RenderSprite(const Vector& pos, SpritePtr sprite);
+	virtual void RenderRectSprite(const Vector& pos, SpritePtr sprite);
 
 	virtual void Clear();
 	virtual void Flip();

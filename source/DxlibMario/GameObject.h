@@ -48,7 +48,7 @@ protected:
 	int _guid;
 	static int guid;
 
-	
+	SpriteRendererPtr _spriteRenderer;
 };
 
 

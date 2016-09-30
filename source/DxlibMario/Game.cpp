@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameEngine.h"
 #include "GameObject.h"
+#include "Sprite.h"
 #include "SpriteRenderer.h"
 #include "Renderer.h"
 #include "Camera.h"
@@ -30,9 +31,20 @@ GamePtr Game::GetInstance( ) {
 void Game::Init() {
 	sRenderer->SetFullWindow(false);
 
+	//BG
 	GameObjectPtr obj = sGameEngine->CreateGameObject();
-	SpriteRendererPtr sprite = obj->AddSpriteRenderer();
-	sprite->SetSprite(sGameEngine->LoadSprite("Resources/test1.bmp"));
+	SpriteRendererPtr spriteRenderer = obj->AddSpriteRenderer();
+	spriteRenderer->SetLayer(-2);
+	SpritePtr sprite = sGameEngine->LoadSprite("Resources/test1.bmp");
+	spriteRenderer->SetSprite(sprite);
+
+	//mario
+	obj = sGameEngine->CreateGameObject();
+	obj->SetGlobalPosition(Vector(0, 170));
+	spriteRenderer = obj->AddSpriteRenderer();
+	sprite = sGameEngine->LoadSprite("Resources/player0.png");
+	sprite->SetDrawRect(Rect(16, 16));
+	spriteRenderer->SetSprite(sprite);
 
 	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));
 }

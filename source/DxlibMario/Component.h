@@ -4,12 +4,14 @@
 PTR( Component );
 PTR( GameObject );
 
-class Component {
+class Component : public std::enable_shared_from_this < Component > {
 public:
 	virtual ~Component() = 0;
 	virtual void Render();
 
 	bool IsEnabled() const;
+
+	GameObjectPtr GetGameObject();
 protected:
 	Component(GameObjectPtr obj);
 
