@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "CameraControl.h"
 #include "RigidBody2D.h"
+#include "SpriteCollider.h"
 
 GamePtr Game::_instance;
 
@@ -44,12 +45,24 @@ void Game::Init() {
 	obj->SetGlobalPosition(Vector(0, 170));
 	RigidBody2DPtr rigid = obj->AddRigidBody2D();
 	rigid->SetGravity(Vector(0, 1));
+	obj->AddSpriteCollider();
+
 	spriteRenderer = obj->AddSpriteRenderer();
-	
 	sprite = sGameEngine->LoadSprite("Resources/player0.png");
 	spriteRenderer->SetSprite(sprite);
 	spriteRenderer->SetDrawRect(Rect(16, 16));
+	spriteRenderer->SetPivot(8, 16);
 
+	//ground
+	obj = sGameEngine->CreateGameObject();
+	obj->SetGlobalPosition(Vector(0, 300));
+	spriteRenderer = obj->AddSpriteRenderer();
+	sprite = sGameEngine->LoadSprite("Resources/map.png");
+	spriteRenderer->SetSprite(sprite);
+	spriteRenderer->SetDrawRect(Rect(48, 64, 64, 80));
+	obj->AddSpriteCollider();
+
+	//camerawork
 	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));
 }
 

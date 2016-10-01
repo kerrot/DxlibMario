@@ -7,7 +7,7 @@ class Process {
 public:
 	virtual ~Process() = 0;
 
-	virtual bool WindowMessage() = 0;
+	virtual int WindowMessage() = 0;
 
 	static ProcessPtr GetInstance();
 protected:

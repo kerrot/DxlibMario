@@ -22,6 +22,9 @@ public:
 	const Rect& GetRect() const;
 	void SetDrawRect(const Rect & rect);
 
+	void SetPivot(int x, int y);
+	void GetPivot(int& x, int& y);
+
 private:
 	SpriteRenderer(GameObjectPtr obj);
 
@@ -30,5 +33,8 @@ private:
 
 	bool _partOnly;
 	int _layer;
+
+	int pivotX;
+	int pivotY;
 };
 

@@ -103,6 +103,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody2D.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteCollider.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
     <ClInclude Include="RigidBody2D.h" />
     <ClInclude Include="smart_ptr.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteCollider.h" />
     <ClInclude Include="SpriteRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

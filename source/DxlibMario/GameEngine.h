@@ -27,12 +27,15 @@ public:
 
 	CameraPtr GetMainCamera();
 
+	const std::map<int, GameObjectPtr>& GetGameObjects();
+
 	void Run();
 private:
 	GameEngine();
 	void UpdateObject();
 	void RenderObject();
 	void RenderSprite();
+	void CheckCollider();
 
 	friend class SpriteRenderer;
 	void SetLayer(int layer, SpriteRendererPtr renderer);

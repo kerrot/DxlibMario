@@ -9,7 +9,7 @@ friend class GameEngine;
 public:
 	virtual ~DxlibProcess();
 
-	virtual bool WindowMessage();
+	virtual int WindowMessage();
 
 private:
 	DxlibProcess();

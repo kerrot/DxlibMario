@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "RigidBody2D.h"
+#include "SpriteCollider.h"
 #include "Behavior.h"
 #include "GameObjectHelper.h"
 
@@ -19,9 +20,18 @@ int GameObject::GetGuid() const {
 	return _guid;
 }
 
+SpriteColliderPtr GameObject::AddSpriteCollider() {
+	if (!_collider) {
+		SpriteColliderPtr tmp = SpriteColliderPtr(new SpriteCollider(shared_from_this()));
+		_components.push_back(tmp);
+		_collider = tmp;
+	}
+
+	return _collider;
+}
+
 RigidBody2DPtr GameObject::AddRigidBody2D() {
-	if (!_rigidBody2D)
-	{
+	if (!_rigidBody2D) {
 		RigidBody2DPtr tmp = RigidBody2DPtr(new RigidBody2D(shared_from_this()));
 		_components.push_back(tmp);
 		_rigidBody2D = tmp;
@@ -31,8 +41,7 @@ RigidBody2DPtr GameObject::AddRigidBody2D() {
 }
 
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
-	if (!_spriteRenderer)
-	{
+	if (!_spriteRenderer) {
 		SpriteRendererPtr tmp = SpriteRendererPtr(new SpriteRenderer(shared_from_this()));
 		_components.push_back(tmp);
 		_spriteRenderer = tmp;

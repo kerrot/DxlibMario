@@ -88,6 +88,10 @@ CameraPtr GameEngine::GetMainCamera() {
 	return _mainCamera;
 }
 
+const std::map<int, GameObjectPtr>& GameEngine::GetGameObjects() {
+	return _objects;
+}
+
 void GameEngine::SetLayer(int layer, SpriteRendererPtr renderer) {
 	if (!renderer) {
 		return;
@@ -108,12 +112,12 @@ void GameEngine::Run() {
 	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
 		_input->UpdateKey();
 
+		CheckCollider();
+
 		UpdateObject();
 
 		_renderer->Clear();
-
 		RenderObject();
-
 		_renderer->Flip();
 	}
 }
@@ -149,4 +153,18 @@ void GameEngine::RenderSprite() {
 			spriteIter->second->RenderSprite();
 		}
 	}
+}
+
+void GameEngine::CheckCollider() {
+	//for (std::map<int, GameObjectPtr>::iterator iter1 = _objects.begin();
+	//	iter1 != _objects.end(); ++iter1) {
+	//	
+	//	std::map<int, GameObjectPtr>::iterator iter2 = iter1;
+	//	for (++iter1; iter2 != _objects.end(); ++iter2) {
+
+	//		if (iter1->second->_collider && iter2->second->_collider) {
+
+	//		}
+	//	}
+	//}
 }

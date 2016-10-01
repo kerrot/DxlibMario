@@ -17,8 +17,8 @@ private:
 
 template <class T>
 std::shared_ptr<T> GameObjectHelper::GetGameObjectComponent(GameObjectPtr obj) {
-	for (std::list<ComponentPtr>::const_iterator iter = obj._components.begin();
-		iter != obj._components.end(); ++iter) {
+	for (std::list<ComponentPtr>::const_iterator iter = obj->_components.begin();
+		iter != obj->_components.end(); ++iter) {
 		std::shared_ptr<T> tmp = std::dynamic_pointer_cast< T >(*iter);
 		if (tmp) {
 			return tmp;

@@ -8,6 +8,6 @@ DxlibProcess::DxlibProcess() {
 DxlibProcess::~DxlibProcess() {
 }
 
-bool DxlibProcess::WindowMessage() {
+int DxlibProcess::WindowMessage() {
 	return ProcessMessage();
 }
