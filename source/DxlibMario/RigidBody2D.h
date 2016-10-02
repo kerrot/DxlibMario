@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "mathmatics.h"
 
+struct Rect;
+
 PTR( RigidBody2D )
 
 class RigidBody2D : public Component {
@@ -10,10 +12,21 @@ public:
 	virtual ~RigidBody2D();
 
 	void Update();
+	
 	void SetGravity(const Vector& g);
+	const Vector& GetGravity();
+
+	void SetAcceleration(const Vector& a);
+	const Vector& GetAcceleration();
+
+	void SetVelocity(const Vector& v);
+	const Vector& GetVelocity();
 
 private:
 	RigidBody2D(GameObjectPtr obj);
+
+	bool CheckCollision(int & x, int & y);
+	void ComputeFinalPosition(int &x, int&y, const Rect& rect1, const Rect& rect2);
 
 	int _drag;
 

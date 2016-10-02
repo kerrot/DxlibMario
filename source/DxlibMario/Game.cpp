@@ -5,9 +5,10 @@
 #include "SpriteRenderer.h"
 #include "Renderer.h"
 #include "Camera.h"
-#include "CameraControl.h"
 #include "RigidBody2D.h"
 #include "SpriteCollider.h"
+#include "CameraControl.h"
+#include "MarioControl.h"
 
 GamePtr Game::_instance;
 
@@ -42,7 +43,8 @@ void Game::Init() {
 
 	//mario
 	obj = sGameEngine->CreateGameObject();
-	obj->SetGlobalPosition(Vector(0, 170));
+	obj->AddBehavior(MarioControlPtr (new MarioControl(obj)));
+	obj->SetGlobalPosition(Vector(70, 170));
 	RigidBody2DPtr rigid = obj->AddRigidBody2D();
 	rigid->SetGravity(Vector(0, 1));
 	obj->AddSpriteCollider();
@@ -53,14 +55,18 @@ void Game::Init() {
 	spriteRenderer->SetDrawRect(Rect(16, 16));
 	spriteRenderer->SetPivot(8, 16);
 
+
 	//ground
-	obj = sGameEngine->CreateGameObject();
-	obj->SetGlobalPosition(Vector(0, 300));
-	spriteRenderer = obj->AddSpriteRenderer();
-	sprite = sGameEngine->LoadSprite("Resources/map.png");
-	spriteRenderer->SetSprite(sprite);
-	spriteRenderer->SetDrawRect(Rect(48, 64, 64, 80));
-	obj->AddSpriteCollider();
+	for (int i = 0; i < 20; ++i)
+	{
+		obj = sGameEngine->CreateGameObject();
+		obj->SetGlobalPosition(Vector(i * 16, 300));
+		spriteRenderer = obj->AddSpriteRenderer();
+		sprite = sGameEngine->LoadSprite("Resources/map.png");
+		spriteRenderer->SetSprite(sprite);
+		spriteRenderer->SetDrawRect(Rect(48, 64, 64, 80));
+		obj->AddSpriteCollider();
+	}
 
 	//camerawork
 	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));

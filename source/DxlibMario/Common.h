@@ -13,10 +13,19 @@ struct Rect {
 	int _down;
 
 	static bool IsCollision(const Rect& rect1, const Rect& rect2);
+
+	void Shift(int x, int y);
 };
 
 inline bool Rect::IsCollision(const Rect& rect1, const Rect& rect2) {
 	bool tmp = rect1._right < rect2._left || rect1._left > rect2._right || rect1._down < rect2._up || rect1._up > rect2._down;
 
 	return !tmp;
+}
+
+inline void Rect::Shift(int x, int y) {
+	_left += x;
+	_right += x;
+	_up += y;
+	_down += y;
 }

@@ -53,6 +53,9 @@
     <ClCompile Include="SpriteCollider.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="MarioControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behavior.h">
@@ -117,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="SpriteCollider.h">
       <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioControl.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

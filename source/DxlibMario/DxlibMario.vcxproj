@@ -99,6 +99,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MarioControl.cpp" />
     <ClCompile Include="Process.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody2D.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectHelper.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="MarioControl.h" />
     <ClInclude Include="mathmatics.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="Renderer.h" />
