@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "SpriteRenderer.h"
+#include "SpriteCollider.h"
 
 GameEnginePtr GameEngine::_instance;
 
@@ -92,24 +93,19 @@ const std::map<int, GameObjectPtr>& GameEngine::GetGameObjects() {
 	return _objects;
 }
 
-void GameEngine::SetLayer(int layer, SpriteRendererPtr renderer) {
-	if (!renderer) {
-		return;
+void GameEngine::DestroyObject(GameObjectPtr obj) {
+	if (obj) {
+		std::map<int, GameObjectPtr>::iterator iter = _objects.find(obj->GetGuid());
+		if (iter != _objects.end()) {
+			_waitForDelete[iter->second->GetGuid()] = iter->second;
+		}
 	}
-
-	int guid = renderer->GetGameObject()->GetGuid();
-	SpriteMap& map = _layerSprite[renderer->GetLayer()];
-	SpriteMap::iterator iter = map.find(guid);
-	if (iter != map.end())
-	{
-		map.erase(iter);
-	}
-
-	_layerSprite[layer][guid] = renderer;
 }
 
 void GameEngine::Run() {
 	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
+		DeleteObjects();
+
 		_input->UpdateKey();
 
 		CheckCollider();
@@ -125,19 +121,25 @@ void GameEngine::Run() {
 void GameEngine::UpdateObject() {
 	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
 		iter != _objects.end(); ++iter ) {
-		iter->second->Update();
+		if (iter->second->IsEnabled()) {
+			iter->second->Update();
+		}
 	}
 
 	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
 		iter != _objects.end(); ++iter) {
-		iter->second->LastUpdate();
+		if (iter->second->IsEnabled()) {
+			iter->second->LastUpdate();
+		}
 	}
 }
 
 void GameEngine::RenderObject() {
 	for (std::map<int, GameObjectPtr>::iterator iter = _objects.begin();
 		iter != _objects.end(); ++iter ) {
-		iter->second->Render();
+		if (iter->second->IsEnabled()) {
+			iter->second->Render();
+		}
 	}
 
 	RenderSprite();
@@ -149,22 +151,74 @@ void GameEngine::RenderSprite() {
 		
 		for (SpriteMap::iterator spriteIter = iter->second.begin();
 			spriteIter != iter->second.end(); ++spriteIter) {
-
-			spriteIter->second->RenderSprite();
+			
+			if (spriteIter->second->IsEnabled()) {
+				spriteIter->second->RenderSprite();
+			}
 		}
 	}
 }
 
 void GameEngine::CheckCollider() {
-	//for (std::map<int, GameObjectPtr>::iterator iter1 = _objects.begin();
-	//	iter1 != _objects.end(); ++iter1) {
-	//	
-	//	std::map<int, GameObjectPtr>::iterator iter2 = iter1;
-	//	for (++iter1; iter2 != _objects.end(); ++iter2) {
+	for (std::map<int, GameObjectPtr>::iterator iter1 = _objects.begin();
+		iter1 != _objects.end(); ++iter1) {
+		
+		if (iter1->second->IsEnabled()) {
+			std::map<int, GameObjectPtr>::iterator iter2 = iter1;
+			for (++iter2; iter2 != _objects.end(); ++iter2) {
 
-	//		if (iter1->second->_collider && iter2->second->_collider) {
+				if (iter2->second->IsEnabled() &&
+					iter1->second->_collider && iter1->second->_collider->IsEnabled() &&
+					iter2->second->_collider && iter2->second->_collider->IsEnabled()) {
+						Rect rect1(iter1->second->_collider->GetRect()), rect2(iter2->second->_collider->GetRect());
+						rect1.Shift((int)iter1->second->GetGlobalPosition().x, (int)iter1->second->GetGlobalPosition().y);
+						rect2.Shift((int)iter2->second->GetGlobalPosition().x, (int)iter2->second->GetGlobalPosition().y);
 
-	//		}
-	//	}
-	//}
+						if (Rect::IsCollision(rect1, rect2)) {
+
+							GameObjectCollision(iter1->second, iter2->second);
+							GameObjectCollision(iter2->second, iter1->second);
+							break;
+						}
+				}
+			}
+		}
+	}
+}
+
+void GameEngine::DeleteObjects() {
+	for (std::map<int, GameObjectPtr>::iterator iter = _waitForDelete.begin();
+		iter != _waitForDelete.end(); ++iter) {
+
+		iter->second->Destroy();
+
+		_objects.erase(_objects.find(iter->first));
+	}
+
+	_waitForDelete.clear();
+}
+
+void GameEngine::SetSpritetLayer(int layer, SpriteRendererPtr renderer) {
+	if (!renderer) {
+		return;
+	}
+
+	int guid = renderer->GetGameObject()->GetGuid();
+	GameEngine::SpriteMap& map = _layerSprite[renderer->GetLayer()];
+	GameEngine::SpriteMap::iterator iter = map.find(guid);
+	if (iter != map.end())
+	{
+		map.erase(iter);
+	}
+
+	_layerSprite[layer][guid] = renderer;
+}
+
+void GameEngine::ClearSpritetLayer(int layer, int guid) {
+	GameEngine::SpriteMap& map = _layerSprite[layer];
+	GameEngine::SpriteMap::iterator iter = map.find(guid);
+	if (iter != map.end())
+	{
+		map.erase(iter);
+	}
 }

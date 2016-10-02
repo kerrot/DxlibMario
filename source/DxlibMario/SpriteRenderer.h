@@ -26,7 +26,9 @@ public:
 	void GetPivot(int& x, int& y);
 
 private:
-	SpriteRenderer(GameObjectPtr obj);
+	SpriteRenderer();
+
+	virtual void OnDestroy();
 
 	SpritePtr _sprite;
 	Rect _range;

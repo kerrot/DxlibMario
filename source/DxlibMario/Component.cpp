@@ -3,10 +3,19 @@
 Component::~Component() {
 }
 
-Component::Component(GameObjectPtr obj)
-: _gameobject(obj) 
-, _enabled(true) {
+Component::Component()
+: _enabled(true) {
 
+}
+
+void Component::OnDestroy() {
+
+}
+
+void Component::Destroy() {
+	OnDestroy();
+
+	_gameobject.reset();
 }
 
 void Component::Render() {

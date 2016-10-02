@@ -6,7 +6,7 @@ PTR( CameraControl )
 class CameraControl : public Behavior
 {
 public:
-	CameraControl(GameObjectPtr obj);
+	CameraControl();
 	virtual ~CameraControl();
 
 	virtual void Update();

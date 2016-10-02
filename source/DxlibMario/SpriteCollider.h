@@ -15,7 +15,7 @@ public:
 	void EnableTrace();
 
 private:
-	SpriteCollider(GameObjectPtr obj);
+	SpriteCollider();
 
 	bool _traceSprite;
 	Rect _range;

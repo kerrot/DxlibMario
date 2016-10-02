@@ -9,6 +9,7 @@
 #include "SpriteCollider.h"
 #include "CameraControl.h"
 #include "MarioControl.h"
+#include "BlockControl.h"
 
 GamePtr Game::_instance;
 
@@ -43,7 +44,7 @@ void Game::Init() {
 
 	//mario
 	obj = sGameEngine->CreateGameObject();
-	obj->AddBehavior(MarioControlPtr (new MarioControl(obj)));
+	obj->AddBehavior(MarioControlPtr (new MarioControl()));
 	obj->SetGlobalPosition(Vector(70, 170));
 	RigidBody2DPtr rigid = obj->AddRigidBody2D();
 	rigid->SetGravity(Vector(0, 1));
@@ -68,8 +69,18 @@ void Game::Init() {
 		obj->AddSpriteCollider();
 	}
 
+	//block
+	obj = sGameEngine->CreateGameObject();
+	obj->SetGlobalPosition(Vector(100, 250));
+	spriteRenderer = obj->AddSpriteRenderer();
+	sprite = sGameEngine->LoadSprite("Resources/map.png");
+	spriteRenderer->SetSprite(sprite);
+	spriteRenderer->SetDrawRect(Rect(80, 96, 16, 32));
+	obj->AddSpriteCollider();
+	obj->AddBehavior(BlockControlPtr(new BlockControl));
+
 	//camerawork
-	sCamera->AddBehavior(CameraControlPtr(new CameraControl(sCamera)));
+	sCamera->AddBehavior(CameraControlPtr(new CameraControl()));
 }
 
 void Game::Run() {

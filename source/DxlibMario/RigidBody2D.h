@@ -23,7 +23,7 @@ public:
 	const Vector& GetVelocity();
 
 private:
-	RigidBody2D(GameObjectPtr obj);
+	RigidBody2D();
 
 	bool CheckCollision(int & x, int & y);
 	void ComputeFinalPosition(int &x, int&y, const Rect& rect1, const Rect& rect2);

@@ -1,7 +1,7 @@
 #include "Behavior.h"
+#include "GameEngine.h"
 
-Behavior::Behavior(GameObjectPtr obj)
-: Component(obj) {
+Behavior::Behavior() {
 
 }
 
@@ -9,15 +9,23 @@ Behavior::~Behavior() {
 
 }	
 
-void Behavior::Awake() {
-
-}
-void Behavior::Start() {
-
-}
 void Behavior::Update(){
 
 }
+
 void Behavior::LastUpdate() {
 
+}
+
+void Behavior::DestroyObject(GameObjectPtr obj) {
+	sGameEngine->DestroyObject(obj);
+}
+
+void Behavior::CollisionEnter(GameObjectPtr other) {
+}
+
+void Behavior::CollisionStay(GameObjectPtr other) {
+}
+
+void Behavior::CollisionExit(GameObjectPtr other) {
 }

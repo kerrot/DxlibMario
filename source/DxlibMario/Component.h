@@ -5,6 +5,7 @@ PTR( Component );
 PTR( GameObject );
 
 class Component : public std::enable_shared_from_this < Component > {
+	friend class GameObject;
 public:
 	virtual ~Component() = 0;
 	virtual void Render();
@@ -13,9 +14,14 @@ public:
 
 	GameObjectPtr GetGameObject();
 protected:
-	Component(GameObjectPtr obj);
+	Component();
+
+	virtual void OnDestroy();
 
 	GameObjectPtr _gameobject;
 
 	bool _enabled;
+
+private:
+	void Destroy();
 };

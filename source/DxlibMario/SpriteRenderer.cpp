@@ -5,10 +5,13 @@
 #include "Camera.h"
 #include "GameEngine.h"
 
-SpriteRenderer::SpriteRenderer(GameObjectPtr obj) 
-: Component(obj)
-, pivotX(0)
+SpriteRenderer::SpriteRenderer() 
+: pivotX(0)
 , pivotY(0) {
+}
+
+void SpriteRenderer::OnDestroy() {
+	sGameEngine->ClearSpritetLayer(_layer, _gameobject->GetGuid());
 }
 
 
@@ -28,7 +31,7 @@ SpritePtr SpriteRenderer::GetSprite() const {
 
 void SpriteRenderer::SetLayer(int layer) {
 	// must call before change layer
-	sGameEngine->SetLayer(layer, std::dynamic_pointer_cast<SpriteRenderer>(shared_from_this()));
+	sGameEngine->SetSpritetLayer(layer, std::dynamic_pointer_cast<SpriteRenderer>(shared_from_this()));
 
 	_layer = layer;
 }
@@ -56,7 +59,7 @@ void SpriteRenderer::GetPivot(int & x, int & y) {
 }
 
 void SpriteRenderer::RenderSprite() {
-	if (!_sprite)
+	if (!_sprite || !_gameobject->IsEnabled())
 	{
 		return;
 	}

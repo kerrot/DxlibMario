@@ -4,8 +4,7 @@
 #include "GameObjectHelper.h"
 #include "RigidBody2D.h"
 
-MarioControl::MarioControl(GameObjectPtr obj)
-: Behavior(obj){
+MarioControl::MarioControl() {
 }
 
 MarioControl::~MarioControl() {

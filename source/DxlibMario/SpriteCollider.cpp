@@ -1,9 +1,8 @@
 #include "SpriteCollider.h"
 #include "GameObjectHelper.h"
 
-SpriteCollider::SpriteCollider(GameObjectPtr obj)
-: Component(obj) 
-, _traceSprite(true) {
+SpriteCollider::SpriteCollider()
+: _traceSprite(true) {
 }
 
 

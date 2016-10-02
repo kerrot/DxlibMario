@@ -3,16 +3,21 @@
 #include "Component.h"
 
 PTR( Behavior );
+PTR( GameObject );
 
 class Behavior : public Component {
 public:
 	virtual ~Behavior() = 0;
 
-	virtual void Awake();
-	virtual void Start();
 	virtual void Update();
 	virtual void LastUpdate();
 	
+	void DestroyObject(GameObjectPtr obj);
+
+	virtual void CollisionEnter(GameObjectPtr other);
+	virtual void CollisionStay(GameObjectPtr other);
+	virtual void CollisionExit(GameObjectPtr other);
+
 protected:
-	Behavior(GameObjectPtr obj);
+	Behavior();
 };

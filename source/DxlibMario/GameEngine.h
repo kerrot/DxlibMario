@@ -1,6 +1,7 @@
 #pragma once
 #include "smart_ptr.h"
 #include <map>
+#include <list>
 
 PTR( GameEngine );
 PTR( Renderer );
@@ -12,9 +13,14 @@ PTR( Camera );
 PTR( SpriteRenderer );
 
 class GameEngine {
+
+friend class SpriteRenderer;
 public:
 	static GameEnginePtr GetInstance();
 	virtual ~GameEngine();
+
+	//               guid
+	typedef std::map<int, SpriteRendererPtr> SpriteMap;
 
 	SpritePtr LoadSprite(const char* filename);
 
@@ -29,6 +35,8 @@ public:
 
 	const std::map<int, GameObjectPtr>& GetGameObjects();
 
+	void DestroyObject(GameObjectPtr obj);
+
 	void Run();
 private:
 	GameEngine();
@@ -37,8 +45,10 @@ private:
 	void RenderSprite();
 	void CheckCollider();
 
-	friend class SpriteRenderer;
-	void SetLayer(int layer, SpriteRendererPtr renderer);
+	void DeleteObjects();
+
+	void SetSpritetLayer(int layer, SpriteRendererPtr renderer);
+	void ClearSpritetLayer(int layer, int guid);
 private:
 	static GameEnginePtr _instance;
 
@@ -51,9 +61,8 @@ private:
 	std::map<const char*, SpritePtr> _sprites;
 	//      guid
 	std::map<int, GameObjectPtr> _objects;
+	std::map<int, GameObjectPtr> _waitForDelete;
 
-	//               guid
-	typedef std::map<int, SpriteRendererPtr> SpriteMap;
 	//       layer
 	std::map<int, SpriteMap> _layerSprite;
 };

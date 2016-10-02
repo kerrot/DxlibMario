@@ -6,7 +6,7 @@ PTR( MarioControl )
 class MarioControl : public Behavior
 {
 public:
-	MarioControl(GameObjectPtr obj);
+	MarioControl();
 	virtual ~MarioControl();
 
 	virtual void Update();

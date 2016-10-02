@@ -8,12 +8,59 @@
 int GameObject::guid = 0;
 
 GameObject::GameObject() 
-: _guid(++guid){
+: _guid(++guid)
+, _enabled(true) {
 
 }
 
-
 GameObject::~GameObject() {
+	//if (_guid == 0) 
+	//{
+	//	_guid = 0; 
+	//}
+}
+
+void GameObjectCollision(GameObjectPtr obj, GameObjectPtr other) {
+	if (obj->_lastCollider == other)
+	{
+		for (std::list<BehaviorPtr>::const_iterator iter = obj->_behaviours.begin();
+			iter != obj->_behaviours.end(); ++iter) {
+			if ((*iter)->IsEnabled()) {
+				(*iter)->CollisionStay(other);
+			}
+		}
+	}
+	else {
+		for (std::list<BehaviorPtr>::const_iterator iter = obj->_behaviours.begin();
+			iter != obj->_behaviours.end(); ++iter) {
+			if ((*iter)->IsEnabled()) {
+				(*iter)->CollisionEnter(other);
+			}
+		}
+	}
+
+	obj->_nowCollider = other;
+}
+
+void GameObject::UpdateCollision() {
+	if (_lastCollider != _nowCollider)	{
+		for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
+			iter != _behaviours.end(); ++iter) {
+			if ((*iter)->IsEnabled()) {
+				(*iter)->CollisionExit(_lastCollider);
+			}
+		}
+	}
+
+	_lastCollider = _nowCollider;
+}
+
+void GameObject::Destroy() {
+	for (std::list<ComponentPtr>::const_iterator iter = _components.begin();
+		iter != _components.end(); ++iter) {
+			
+		(*iter)->Destroy();
+	}
 }
 
 int GameObject::GetGuid() const {
@@ -22,7 +69,9 @@ int GameObject::GetGuid() const {
 
 SpriteColliderPtr GameObject::AddSpriteCollider() {
 	if (!_collider) {
-		SpriteColliderPtr tmp = SpriteColliderPtr(new SpriteCollider(shared_from_this()));
+		SpriteColliderPtr tmp = SpriteColliderPtr(new SpriteCollider());
+		tmp->_gameobject = shared_from_this();
+
 		_components.push_back(tmp);
 		_collider = tmp;
 	}
@@ -32,7 +81,9 @@ SpriteColliderPtr GameObject::AddSpriteCollider() {
 
 RigidBody2DPtr GameObject::AddRigidBody2D() {
 	if (!_rigidBody2D) {
-		RigidBody2DPtr tmp = RigidBody2DPtr(new RigidBody2D(shared_from_this()));
+		RigidBody2DPtr tmp = RigidBody2DPtr(new RigidBody2D());
+		tmp->_gameobject = shared_from_this();
+
 		_components.push_back(tmp);
 		_rigidBody2D = tmp;
 	}
@@ -42,7 +93,9 @@ RigidBody2DPtr GameObject::AddRigidBody2D() {
 
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
 	if (!_spriteRenderer) {
-		SpriteRendererPtr tmp = SpriteRendererPtr(new SpriteRenderer(shared_from_this()));
+		SpriteRendererPtr tmp = SpriteRendererPtr(new SpriteRenderer());
+		tmp->_gameobject = shared_from_this();
+
 		_components.push_back(tmp);
 		_spriteRenderer = tmp;
 		_spriteRenderer->SetLayer(0);
@@ -61,9 +114,11 @@ void GameObject::Render() {
 }
 
 void GameObject::Update() {
-	if (_rigidBody2D) {
+	if (_rigidBody2D && _rigidBody2D->IsEnabled()) {
 		_rigidBody2D->Update();
 	}
+
+	UpdateCollision();
 
 	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
 		iter != _behaviours.end(); ++iter) {
@@ -90,7 +145,17 @@ Vector GameObject::GetLocalPosition() const {
 	return _localPosition;
 }
 
+bool GameObject::IsEnabled() const {
+	return _enabled;
+}
+
+void GameObject::SetEnable(bool v) {
+	_enabled = v;
+}
+
 void GameObject::AddBehavior(BehaviorPtr ptr) {
+	ptr->_gameobject = shared_from_this();
+
 	_components.push_back(ptr);
 	_behaviours.push_back(ptr);
 }

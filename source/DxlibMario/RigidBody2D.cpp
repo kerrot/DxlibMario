@@ -4,9 +4,8 @@
 #include "SpriteCollider.h"
 #include "GameEngine.h"
 
-RigidBody2D::RigidBody2D(GameObjectPtr obj)
-: Component(obj)
-, _drag(0) {
+RigidBody2D::RigidBody2D()
+: _drag(0) {
 
 }
 
@@ -17,7 +16,7 @@ bool RigidBody2D::CheckCollision(int & x, int & y) {
 	bool result = false;
 
 	SpriteColliderPtr collider = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject);
-	if (collider) {
+	if (collider && collider->IsEnabled()) {
 		Vector pos = _gameobject->GetGlobalPosition() + _velocity;
 		Rect rect(collider->GetRect());
 		x = (int)pos.x;
@@ -28,7 +27,7 @@ bool RigidBody2D::CheckCollision(int & x, int & y) {
 			iter != objs.end(); ++iter) {
 
 			SpriteColliderPtr tmp = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(iter->second);
-			if (_gameobject == iter->second || !tmp) {
+			if (_gameobject == iter->second || !tmp || !tmp->IsEnabled()) {
 				continue;
 			}
 
@@ -38,6 +37,9 @@ bool RigidBody2D::CheckCollision(int & x, int & y) {
 
 			if (Rect::IsCollision(rect1, rect2)) {
 				result = true;
+
+				GameObjectCollision(_gameobject, iter->second);
+				GameObjectCollision(iter->second, _gameobject);
 
 				ComputeFinalPosition(x, y, rect, rect2);
 			}
@@ -52,7 +54,7 @@ void RigidBody2D::ComputeFinalPosition(int & x, int & y, const Rect & rect1, con
 	if (_velocity.x != 0)
 	{
 		Rect tmpRect(rect1);
-		tmpRect.Shift(_gameobject->GetGlobalPosition().x + _velocity.x, _gameobject->GetGlobalPosition().y);
+		tmpRect.Shift((int)_gameobject->GetGlobalPosition().x + (int)_velocity.x, (int)_gameobject->GetGlobalPosition().y);
 		if (Rect::IsCollision(tmpRect, rect2)) {
 			if (_velocity.x > 0) {
 				int tmp = rect2._left - 1 - rect1._right;
@@ -72,7 +74,7 @@ void RigidBody2D::ComputeFinalPosition(int & x, int & y, const Rect & rect1, con
 	if (_velocity.y != 0)
 	{
 		Rect tmpRect(rect1);
-		tmpRect.Shift(_gameobject->GetGlobalPosition().x, _gameobject->GetGlobalPosition().y + _velocity.y);
+		tmpRect.Shift((int)_gameobject->GetGlobalPosition().x, (int)_gameobject->GetGlobalPosition().y + (int)_velocity.y);
 		if (Rect::IsCollision(tmpRect, rect2)) {
 			if (_velocity.y > 0) {
 				int tmp = rect2._up - 1 - rect1._down;

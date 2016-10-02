@@ -2,8 +2,7 @@
 #include "Input.h"
 #include "GameObject.h"
 
-CameraControl::CameraControl(GameObjectPtr obj) 
-: Behavior(obj){
+CameraControl::CameraControl() {
 }
 
 CameraControl::~CameraControl() {
