@@ -47,8 +47,13 @@ private:
 	ProcessPtr _process;
 	CameraPtr _mainCamera;
 
+	struct SpriteData {
+		int num;
+		int width;
+		int height;
+	};
 	//       filename
-	std::map<const char*, SpritePtr> _sprites;
+	std::map<const char*, SpriteData> _sprites;
 	//      guid
 	std::map<int, GameObjectPtr> _objects;
 

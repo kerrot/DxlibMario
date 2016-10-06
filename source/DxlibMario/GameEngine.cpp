@@ -27,21 +27,18 @@ GameEngine::~GameEngine( ) {
 
 SpritePtr GameEngine::LoadSprite(const char * filename)
 {
-	std::map<const char*, SpritePtr>::const_iterator iter = _sprites.find(filename);
+	std::map<const char*, SpriteData>::const_iterator iter = _sprites.find(filename);
 	if (iter != _sprites.end())
 	{
-		return iter->second;
+		return SpritePtr(new Sprite(iter->second.num, iter->second.width, iter->second.height));
 	}
 
-	int num = _renderer->LoadSprite(filename);
-	int width;
-	int height;
-	_renderer->GetSpriteSize(num, &width, &height);
+	SpriteData data;
+	data.num = _renderer->LoadSprite(filename);
+	_renderer->GetSpriteSize(data.num, &data.width, &data.height);
+	_sprites[filename] = data;
 
-	SpritePtr tmp = SpritePtr(new Sprite(num, width, height));
-	_sprites[filename] = tmp;
-
-	return tmp;
+	return SpritePtr(new Sprite(data.num, data.width, data.height));
 }
 
 GameObjectPtr GameEngine::CreateGameObject() {

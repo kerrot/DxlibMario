@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 #include "RigidBody2D.h"
 #include "SpriteCollider.h"
+#include "Animator.h"
 #include "Behavior.h"
 #include "GameObjectHelper.h"
 
@@ -49,6 +50,16 @@ SpriteRendererPtr GameObject::AddSpriteRenderer() {
 	}
 
 	return _spriteRenderer;
+}
+
+AnimatorPtr GameObject::AddAnimator() {
+	if (!_animator) {
+		AnimatorPtr tmp = AnimatorPtr(new Animator(shared_from_this()));
+		_components.push_back(tmp);
+		_animator = tmp;
+	}
+
+	return _animator;
 }
 
 void GameObject::Render() {

@@ -10,6 +10,7 @@ PTR( Behavior );
 PTR( SpriteRenderer );
 PTR( RigidBody2D );
 PTR( SpriteCollider );
+PTR( Animator )
 
 class GameObject : public std::enable_shared_from_this < GameObject > {
 friend class GameEngine;
@@ -27,6 +28,8 @@ public:
 	SpriteColliderPtr AddSpriteCollider();
 	RigidBody2DPtr AddRigidBody2D();
 	SpriteRendererPtr AddSpriteRenderer();
+	AnimatorPtr AddAnimator();
+
 	void AddBehavior(BehaviorPtr ptr);
 
 	void SetParent(GameObjectPtr obj);
@@ -54,6 +57,7 @@ protected:
 	SpriteRendererPtr _spriteRenderer;
 	RigidBody2DPtr _rigidBody2D;
 	SpriteColliderPtr _collider;
+	AnimatorPtr _animator;
 
 	std::map<int, SpriteColliderPtr> _colliderObjs;
 };
