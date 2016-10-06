@@ -2,13 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Behavior.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="DxlibInput.cpp">
@@ -20,25 +14,10 @@
     <ClCompile Include="DxlibRenderer.cpp">
       <Filter>Dxlib</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Process.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="CameraControl.cpp">
@@ -47,27 +26,54 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="RigidBody2D.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteCollider.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="MarioControl.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationClip.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationKey.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody2D.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteCollider.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior.cpp">
+      <Filter>GameEngine\Component</Filter>
     </ClCompile>
     <ClCompile Include="BlockControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Behavior.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="DxlibInput.h">
@@ -79,28 +85,13 @@
     <ClInclude Include="DxlibRenderer.h">
       <Filter>Dxlib</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectHelper.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Process.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="mathmatics.h">
@@ -118,14 +109,47 @@
     <ClInclude Include="Common.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="RigidBody2D.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteCollider.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="MarioControl.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationClip.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationKey.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody2D.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteCollider.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>GameEngine\Component</Filter>
     </ClInclude>
     <ClInclude Include="BlockControl.h">
       <Filter>Game</Filter>
@@ -143,6 +167,15 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{078e2bdd-2e52-4929-919a-311192f15352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Animation">
+      <UniqueIdentifier>{08aa947f-65f2-4328-b212-a12f76d51575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Component">
+      <UniqueIdentifier>{92220b1c-633f-42c0-ab0f-84b1a535ab42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Core">
+      <UniqueIdentifier>{78833c18-dd74-4f83-82c4-af2f81816166}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -39,3 +39,4 @@ bin/Log.txt
 *.opensdf
 *.sdf
 /source/*.opendb
+source/DxlibMario/Log.txt
