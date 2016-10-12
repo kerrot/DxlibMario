@@ -28,7 +28,7 @@ private:
 	bool CheckCollision(int & x, int & y);
 	void ComputeFinalPosition(int &x, int&y, const Rect& rect1, const Rect& rect2);
 
-	int _drag;
+	double _drag;
 
 	Vector _gravity;
 	Vector _velocity;

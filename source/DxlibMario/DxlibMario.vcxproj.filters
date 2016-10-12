@@ -68,8 +68,20 @@
     <ClCompile Include="BlockControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="DxlibGameTime.cpp">
+      <Filter>Dxlib</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
     <ClCompile Include="AnimationProperty.cpp">
       <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationData.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,8 +163,20 @@
     <ClInclude Include="BlockControl.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DxlibGameTime.h">
+      <Filter>Dxlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
     <ClInclude Include="AnimationProperty.h">
       <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationData.h">
+      <Filter>GameEngine\Animation\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +200,9 @@
     </Filter>
     <Filter Include="GameEngine\Core">
       <UniqueIdentifier>{78833c18-dd74-4f83-82c4-af2f81816166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Animation\Data">
+      <UniqueIdentifier>{7183c512-098d-4ae0-8280-b1a9d07134d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

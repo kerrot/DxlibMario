@@ -3,6 +3,7 @@
 #include "GameObjectHelper.h"
 #include "SpriteCollider.h"
 #include "GameEngine.h"
+#include "GameTime.h"
 
 RigidBody2D::RigidBody2D()
 : _drag(0) {
@@ -94,7 +95,7 @@ void RigidBody2D::ComputeFinalPosition(int & x, int & y, const Rect & rect1, con
 }
 
 void RigidBody2D::Update() {
-	_velocity += _acceleration + _gravity;
+	_velocity += (_acceleration + _gravity) ;
 
 	_velocity = _velocity.normalize() * (_velocity.getLength() - _drag);
 

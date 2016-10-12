@@ -13,6 +13,7 @@ public:
 	virtual ~Animator();
 
 	AnimationStateWPtr AddState(const char* name);
+	void Update();
 
 private:
 	Animator();

@@ -3,6 +3,7 @@
 #include "RigidBody2D.h"
 #include "SpriteCollider.h"
 #include "Animator.h"
+#include "Animation.h"
 #include "Behavior.h"
 #include "GameObjectHelper.h"
 
@@ -15,10 +16,7 @@ GameObject::GameObject()
 }
 
 GameObject::~GameObject() {
-	//if (_guid == 0) 
-	//{
-	//	_guid = 0; 
-	//}
+
 }
 
 void GameObjectCollision(GameObjectPtr obj, GameObjectPtr other) {
@@ -54,6 +52,16 @@ void GameObject::UpdateCollision() {
 	}
 
 	_lastCollider = _nowCollider;
+}
+
+void GameObject::UpdateAnimation() {
+	if (_animator && _animator->IsEnabled()) {
+		_animator->Update();
+	}
+
+	if (_animation && _animation->IsEnabled()) {
+		_animation->Update();
+	}
 }
 
 void GameObject::Destroy() {
@@ -116,6 +124,17 @@ AnimatorPtr GameObject::AddAnimator() {
 	return _animator;
 }
 
+AnimationWPtr GameObject::AddAnimation() {
+	if (!_animation) {
+		AnimationPtr tmp = AnimationPtr(new Animation());
+		tmp->_gameobject = shared_from_this();
+		_components.push_back(tmp);
+		_animation = tmp;
+	}
+
+	return _animation;
+}
+
 void GameObject::Render() {
 	for (std::list<ComponentPtr>::const_iterator iter = _components.begin();
 		iter != _components.end(); ++iter) {
@@ -138,6 +157,8 @@ void GameObject::Update() {
 			(*iter)->Update();
 		}
 	}
+
+	UpdateAnimation();
 }
 
 void GameObject::LastUpdate() {

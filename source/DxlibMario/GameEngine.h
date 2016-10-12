@@ -13,6 +13,7 @@ PTR( GameObject );
 PTR( Camera );
 PTR( SpriteRenderer );
 PTR( AnimationClip );
+PTR( GameTime );
 
 class GameEngine {
 
@@ -34,6 +35,7 @@ public:
 	RendererPtr GetRenderer();
 	InputPtr GetInput();
 	ProcessPtr GetProcess();
+	GameTimePtr GetGameTime();
 
 	CameraPtr GetMainCamera();
 
@@ -60,6 +62,7 @@ private:
 	InputPtr _input;
 	ProcessPtr _process;
 	CameraPtr _mainCamera;
+	GameTimePtr _gameTime;
 
 	struct SpriteData {
 		int num;

@@ -1,14 +1,29 @@
 #pragma once
 #include "smart_ptr.h"
+#include <map>
 
 PTR( AnimationProperty )
+PTR( AnimationData )
+
+enum AnimationPropertyType {
+	ANIMATION_PROPERTY_POSITION,
+};
 
 class AnimationProperty {
-friend class AnimationClip;
+	friend class AnimationClip;
 public:
 	virtual ~AnimationProperty();
 
-private:
-	AnimationProperty();
-};
+	void Update(__int64 time);
+	AnimationDataPtr AddKey(__int64 time);
 
+	__int64 KeyMaxTime();
+
+private:
+	AnimationProperty(AnimationPropertyType type);
+	std::map<__int64, AnimationDataPtr> _keys;
+
+	void GetData(__int64 time, AnimationDataPtr& before, AnimationDataPtr& end);
+
+	AnimationPropertyType _type;
+};

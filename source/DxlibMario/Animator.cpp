@@ -20,3 +20,6 @@ AnimationStateWPtr Animator::AddState(const char* name) {
 
 	return tmp;
 }
+
+void Animator::Update() {
+}

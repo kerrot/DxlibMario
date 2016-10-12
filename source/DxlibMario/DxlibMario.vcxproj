@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -87,7 +87,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationClip.cpp" />
+    <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="AnimationProperty.cpp" />
     <ClCompile Include="AnimationState.cpp" />
     <ClCompile Include="Animator.cpp" />
@@ -96,12 +98,14 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraControl.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DxlibGameTime.cpp" />
     <ClCompile Include="DxlibInput.cpp" />
     <ClCompile Include="DxlibProcess.cpp" />
     <ClCompile Include="DxlibRenderer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MarioControl.cpp" />
@@ -113,7 +117,9 @@
     <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationClip.h" />
+    <ClInclude Include="AnimationData.h" />
     <ClInclude Include="AnimationProperty.h" />
     <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
@@ -123,6 +129,7 @@
     <ClInclude Include="CameraControl.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="DxlibGameTime.h" />
     <ClInclude Include="DxlibInput.h" />
     <ClInclude Include="DxlibProcess.h" />
     <ClInclude Include="DxlibRenderer.h" />
@@ -130,6 +137,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectHelper.h" />
+    <ClInclude Include="GameTime.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MarioControl.h" />
     <ClInclude Include="mathmatics.h" />

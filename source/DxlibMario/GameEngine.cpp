@@ -2,9 +2,8 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "DxlibRenderer.h"
-#include "Input.h"
 #include "DxlibInput.h"
-#include "Process.h"
+#include "DxlibGameTime.h"
 #include "DxlibProcess.h"
 #include "GameObject.h"
 #include "Camera.h"
@@ -12,13 +11,15 @@
 #include "SpriteCollider.h"
 #include "AnimationClip.h"
 
+
 GameEnginePtr GameEngine::_instance;
 
 
 GameEngine::GameEngine( ) 
 : _renderer(DxlibRendererPtr(new DxlibRenderer))
 , _input(DxlibInputPtr(new DxlibInput)) 
-, _process(DxlibProcessPtr(new DxlibProcess)){
+, _process(DxlibProcessPtr(new DxlibProcess))
+,_gameTime(DxlibGameTimePtr(new DxlibGameTime)){
 	CreateCamera();
 }
 
@@ -95,6 +96,10 @@ ProcessPtr GameEngine::GetProcess() {
 	return _process;
 }
 
+GameTimePtr GameEngine::GetGameTime() {
+	return _gameTime;
+}
+
 CameraPtr GameEngine::GetMainCamera() {
 	return _mainCamera;
 }
@@ -114,7 +119,8 @@ void GameEngine::DestroyObject(GameObjectPtr obj) {
 
 void GameEngine::Run() {
 	while(!_input->GetKey("ESC") && _process->WindowMessage() == 0) {
-		DeleteObjects();
+		
+		_gameTime->UpdateTime();
 
 		_input->UpdateKey();
 
@@ -125,6 +131,8 @@ void GameEngine::Run() {
 		_renderer->Clear();
 		RenderObject();
 		_renderer->Flip();
+
+		DeleteObjects();
 	}
 }
 
