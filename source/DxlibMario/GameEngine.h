@@ -2,6 +2,7 @@
 #include "smart_ptr.h"
 #include <map>
 #include <list>
+#include <string>
 
 PTR( GameEngine );
 PTR( Renderer );
@@ -11,6 +12,7 @@ PTR( Sprite );
 PTR( GameObject );
 PTR( Camera );
 PTR( SpriteRenderer );
+PTR( AnimationClip );
 
 class GameEngine {
 
@@ -23,6 +25,8 @@ public:
 	typedef std::map<int, SpriteRendererPtr> SpriteMap;
 
 	SpritePtr LoadSprite(const char* filename);
+
+	AnimationClipWPtr CreateAnimationClip(const char* name);
 
 	GameObjectPtr CreateGameObject();
 	CameraPtr CreateCamera();
@@ -63,13 +67,15 @@ private:
 		int height;
 	};
 	//       filename
-	std::map<const char*, SpriteData> _sprites;
+	std::map<std::string, SpriteData> _sprites;
 	//      guid
 	std::map<int, GameObjectPtr> _objects;
 	std::map<int, GameObjectPtr> _waitForDelete;
 
 	//       layer
 	std::map<int, SpriteMap> _layerSprite;
+
+	std::map<std::string, AnimationClipPtr> _clips;
 };
 
 #define sGameEngine GameEngine::GetInstance()

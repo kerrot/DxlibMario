@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "SpriteRenderer.h"
 #include "SpriteCollider.h"
+#include "AnimationClip.h"
 
 GameEnginePtr GameEngine::_instance;
 
@@ -28,7 +29,7 @@ GameEngine::~GameEngine( ) {
 
 SpritePtr GameEngine::LoadSprite(const char * filename)
 {
-	std::map<const char*, SpriteData>::const_iterator iter = _sprites.find(filename);
+	std::map<std::string, SpriteData>::const_iterator iter = _sprites.find(filename);
 	if (iter != _sprites.end())
 	{
 		return SpritePtr(new Sprite(iter->second.num, iter->second.width, iter->second.height));
@@ -57,6 +58,18 @@ CameraPtr GameEngine::CreateCamera() {
 	{
 		_mainCamera = tmp;
 	}
+
+	return tmp;
+}
+
+AnimationClipWPtr GameEngine::CreateAnimationClip(const char* name) {
+	std::map<std::string, AnimationClipPtr>::iterator iter = _clips.find(name);
+	if (iter != _clips.end()) {
+		return iter->second;
+	}
+
+	AnimationClipPtr tmp = AnimationClipPtr(new AnimationClip(name));
+	_clips[name] = tmp;
 
 	return tmp;
 }

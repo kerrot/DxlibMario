@@ -1,6 +1,7 @@
 #include "AnimationClip.h"
 
-AnimationClip::AnimationClip() {
+AnimationClip::AnimationClip(const char* name)
+: _name(name) {
 }
 
 

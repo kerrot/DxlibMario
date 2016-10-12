@@ -88,6 +88,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationClip.cpp" />
+    <ClCompile Include="AnimationProperty.cpp" />
     <ClCompile Include="AnimationState.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Behavior.cpp" />
@@ -113,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClip.h" />
+    <ClInclude Include="AnimationProperty.h" />
     <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="Behavior.h" />
@@ -138,6 +140,9 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteCollider.h" />
     <ClInclude Include="SpriteRenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

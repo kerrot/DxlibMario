@@ -68,6 +68,9 @@
     <ClCompile Include="BlockControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationProperty.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -148,6 +151,9 @@
     <ClInclude Include="BlockControl.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationProperty.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngine">
@@ -171,5 +177,8 @@
     <Filter Include="GameEngine\Core">
       <UniqueIdentifier>{78833c18-dd74-4f83-82c4-af2f81816166}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
