@@ -107,7 +107,8 @@ SpriteRendererPtr GameObject::AddSpriteRenderer() {
 
 AnimatorPtr GameObject::AddAnimator() {
 	if (!_animator) {
-		AnimatorPtr tmp = AnimatorPtr(new Animator(shared_from_this()));
+		AnimatorPtr tmp = AnimatorPtr(new Animator());
+		tmp->_gameobject = shared_from_this();
 		_components.push_back(tmp);
 		_animator = tmp;
 	}

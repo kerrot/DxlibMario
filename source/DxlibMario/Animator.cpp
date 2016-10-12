@@ -9,7 +9,7 @@ Animator::Animator() {
 Animator::~Animator() {
 }
 
-AnimationStateWeakPtr Animator::AddState(const char* name) {
+AnimationStateWPtr Animator::AddState(const char* name) {
 	std::map<std::string, AnimationStatePtr>::iterator iter = _state.find(name);
 	if (iter != _state.end()) {
 		return iter->second;

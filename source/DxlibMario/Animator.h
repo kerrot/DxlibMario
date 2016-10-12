@@ -12,7 +12,7 @@ friend class GameObject;
 public:
 	virtual ~Animator();
 
-	AnimationStateWeakPtr AddState(const char* name);
+	AnimationStateWPtr AddState(const char* name);
 
 private:
 	Animator();
