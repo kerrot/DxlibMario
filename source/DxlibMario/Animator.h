@@ -12,10 +12,10 @@ friend class GameObject;
 public:
 	virtual ~Animator();
 
-	AnimationStatePtr AddState(const char* name);
+	AnimationStateWeakPtr AddState(const char* name);
 
 private:
-	Animator(GameObjectPtr obj);
+	Animator();
 
 	std::map<std::string, AnimationStatePtr> _state;
 };

@@ -2,15 +2,14 @@
 #include "AnimationState.h"
 
 
-Animator::Animator(GameObjectPtr obj) 
-: Component(obj) {
+Animator::Animator() {
 }
 
 
 Animator::~Animator() {
 }
 
-AnimationStatePtr Animator::AddState(const char* name) {
+AnimationStateWeakPtr Animator::AddState(const char* name) {
 	std::map<std::string, AnimationStatePtr>::iterator iter = _state.find(name);
 	if (iter != _state.end()) {
 		return iter->second;

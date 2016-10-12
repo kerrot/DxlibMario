@@ -32,9 +32,6 @@
     <ClCompile Include="AnimationClip.cpp">
       <Filter>GameEngine\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationKey.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationState.cpp">
       <Filter>GameEngine\Animation</Filter>
     </ClCompile>
@@ -116,9 +113,6 @@
       <Filter>GameEngine\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationClip.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationKey.h">
       <Filter>GameEngine\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationState.h">
