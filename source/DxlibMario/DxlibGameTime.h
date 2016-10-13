@@ -9,7 +9,7 @@ public:
 	virtual ~DxlibGameTime();
 private:
 
-	virtual long UpdateCurrent();
+	virtual __int64 UpdateCurrent();
 
 	DxlibGameTime();
 };

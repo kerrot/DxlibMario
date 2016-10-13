@@ -5,6 +5,7 @@
 
 PTR(AnimationClip)
 PTR(AnimationProperty)
+PTR(GameObject)
 
 enum AnimationPropertyType;
 
@@ -13,9 +14,9 @@ class AnimationClip {
 public:
 	virtual ~AnimationClip();
 
-	AnimationPropertyWPtr CreateProperty(AnimationPropertyType type);
+	AnimationPropertyPtr CreateProperty(AnimationPropertyType type);
 
-	void Update(__int64 time);
+	void Update(__int64 time, GameObjectPtr ptr);
 	__int64 GetTime();
 
 private:

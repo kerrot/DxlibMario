@@ -1,4 +1,5 @@
 #include "AnimationProperty.h"
+#include "AnimationDataPosition.h"
 
 __int64 AnimationProperty::KeyMaxTime() {
 	if (_keys.empty()) {
@@ -10,24 +11,38 @@ __int64 AnimationProperty::KeyMaxTime() {
 
 AnimationProperty::AnimationProperty(AnimationPropertyType type)
 : _type(type) {
+	AddKey(0);
 }
 
 AnimationProperty::~AnimationProperty() {
 }
 
 
-void AnimationProperty::Update(__int64 time) {
+void AnimationProperty::Update(__int64 time, GameObjectPtr ptr) {
 	if (_keys.empty()) {
 		return;
 	}
 
 	AnimationDataPtr before, end;
 	GetData(time, before, end);
+
+	before->Apply(time, ptr, end);
 }
 
 void AnimationProperty::GetData(__int64 time, AnimationDataPtr & before, AnimationDataPtr & end) {
+	std::map<__int64, AnimationDataPtr>::iterator data = _keys.begin();
+	std::map<__int64, AnimationDataPtr>::iterator iter = data;
+	for (; iter != _keys.end(); ++iter) {
+		if (iter->first > time) {
+			break;
+		}
+		else {
+			data = iter;
+		}
+	}
 
-
+	before = data->second;
+	end = (iter == _keys.end()) ? data->second : iter->second;
 }
 
 AnimationDataPtr AnimationProperty::AddKey(__int64 time) {
@@ -36,8 +51,19 @@ AnimationDataPtr AnimationProperty::AddKey(__int64 time) {
 		return iter->second;
 	}
 
-	AnimationDataPtr tmp;// = AnimationDataPtr(new);
-	_keys[time] = tmp;
+	AnimationDataPtr tmp;
+	switch (_type)
+	{
+	case ANIMATION_PROPERTY_POSITION:
+		tmp = AnimationDataPositionPtr(new AnimationDataPosition(time));
+		break;
+	default:
+		break;
+	}
+
+	if (tmp) {
+		_keys[time] = tmp;
+	}
 
 	return tmp;
 }

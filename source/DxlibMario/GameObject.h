@@ -30,7 +30,7 @@ public:
 	RigidBody2DPtr AddRigidBody2D();
 	SpriteRendererPtr AddSpriteRenderer();
 	AnimatorPtr AddAnimator();
-	AnimationWPtr AddAnimation();
+	AnimationPtr AddAnimation();
 
 	void AddBehavior(BehaviorPtr ptr);
 

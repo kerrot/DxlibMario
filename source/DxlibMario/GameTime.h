@@ -23,7 +23,7 @@ public:
 protected:
 	GameTime();
 
-	virtual long UpdateCurrent() = 0;
+	virtual __int64 UpdateCurrent() = 0;
 
 	bool _pause;
 

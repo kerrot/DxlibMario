@@ -11,7 +11,7 @@ public:
 
 	void SetClip(AnimationClipWPtr ptr);
 
-	void Start();
+	void Play();
 	void Stop();
 	void Pause();
 

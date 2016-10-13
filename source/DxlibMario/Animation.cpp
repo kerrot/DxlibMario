@@ -21,7 +21,7 @@ void Animation::SetClip(AnimationClipWPtr ptr) {
 	}
 }
 
-void Animation::Start() {
+void Animation::Play() {
 	_pause = false;
 }
 
@@ -35,9 +35,13 @@ void Animation::Pause() {
 }
 
 void Animation::Update() {
+	if (_pause) {
+		return;
+	}
+
 	if (!_clip.expired()) {
 		AnimationClipPtr tmp = _clip.lock();
-		tmp->Update(_current);
+		tmp->Update(_current, _gameobject);
 	}
 
 	_current += sGameTime->DeltaTime();

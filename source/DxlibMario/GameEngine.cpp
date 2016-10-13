@@ -63,7 +63,7 @@ CameraPtr GameEngine::CreateCamera() {
 	return tmp;
 }
 
-AnimationClipWPtr GameEngine::CreateAnimationClip(const char* name) {
+AnimationClipPtr GameEngine::CreateAnimationClip(const char* name) {
 	std::map<std::string, AnimationClipPtr>::iterator iter = _clips.find(name);
 	if (iter != _clips.end()) {
 		return iter->second;

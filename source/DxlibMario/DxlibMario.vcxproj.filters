@@ -83,6 +83,9 @@
     <ClCompile Include="AnimationData.cpp">
       <Filter>GameEngine\Animation\Data</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationDataPosition.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -176,6 +179,9 @@
       <Filter>GameEngine\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationData.h">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataPosition.h">
       <Filter>GameEngine\Animation\Data</Filter>
     </ClInclude>
   </ItemGroup>

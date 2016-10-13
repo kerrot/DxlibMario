@@ -8,6 +8,9 @@ public:
 	BlockControl();
 	virtual ~BlockControl();
 
+	virtual void Start();
+	virtual void Update();
+
 	virtual void CollisionEnter(GameObjectPtr other);
 };
 

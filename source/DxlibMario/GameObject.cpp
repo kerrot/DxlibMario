@@ -124,7 +124,7 @@ AnimatorPtr GameObject::AddAnimator() {
 	return _animator;
 }
 
-AnimationWPtr GameObject::AddAnimation() {
+AnimationPtr GameObject::AddAnimation() {
 	if (!_animation) {
 		AnimationPtr tmp = AnimationPtr(new Animation());
 		tmp->_gameobject = shared_from_this();
@@ -145,10 +145,17 @@ void GameObject::Render() {
 }
 
 void GameObject::Update() {
+	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
+		iter != _behaviours.end(); ++iter) {
+		if ((*iter)->IsEnabled()) {
+			(*iter)->InitBehavior();
+		}
+	}
+	
 	if (_rigidBody2D && _rigidBody2D->IsEnabled()) {
 		_rigidBody2D->Update();
 	}
-
+	
 	UpdateCollision();
 
 	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();

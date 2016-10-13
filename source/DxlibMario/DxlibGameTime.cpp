@@ -1,8 +1,8 @@
 #include "DxlibGameTime.h"
 #include "DxLib.h"
 
-long DxlibGameTime::UpdateCurrent() {
-	return GetNowHiPerformanceCount();
+__int64 DxlibGameTime::UpdateCurrent() {
+	return GetNowCount();
 }
 
 DxlibGameTime::DxlibGameTime() {

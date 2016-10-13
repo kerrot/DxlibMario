@@ -1,13 +1,24 @@
 #include "Behavior.h"
 #include "GameEngine.h"
 
-Behavior::Behavior() {
+void Behavior::InitBehavior() {
+	if (!_init) {
+		_init = true;
+		Start();
+	}
+}
+
+Behavior::Behavior()
+: _init(false) {
 
 }
 
 Behavior::~Behavior() {
 
 }	
+
+void Behavior::Start() {
+}
 
 void Behavior::Update(){
 

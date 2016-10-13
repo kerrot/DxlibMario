@@ -4,6 +4,7 @@
 
 PTR( AnimationProperty )
 PTR( AnimationData )
+PTR( GameObject )
 
 enum AnimationPropertyType {
 	ANIMATION_PROPERTY_POSITION,
@@ -14,7 +15,7 @@ class AnimationProperty {
 public:
 	virtual ~AnimationProperty();
 
-	void Update(__int64 time);
+	void Update(__int64 time, GameObjectPtr ptr);
 	AnimationDataPtr AddKey(__int64 time);
 
 	__int64 KeyMaxTime();

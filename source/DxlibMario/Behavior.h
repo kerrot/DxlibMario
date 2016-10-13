@@ -6,9 +6,11 @@ PTR( Behavior );
 PTR( GameObject );
 
 class Behavior : public Component {
+	friend class GameObject;
 public:
 	virtual ~Behavior() = 0;
 
+	virtual void Start();
 	virtual void Update();
 	virtual void LastUpdate();
 	
@@ -19,5 +21,9 @@ public:
 	virtual void CollisionExit(GameObjectPtr other);
 
 protected:
+	void InitBehavior();
+
 	Behavior();
+
+	bool _init;
 };

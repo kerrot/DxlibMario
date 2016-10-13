@@ -9,7 +9,7 @@ AnimationClip::AnimationClip(const char* name)
 AnimationClip::~AnimationClip() {
 }
 
-AnimationPropertyWPtr AnimationClip::CreateProperty(AnimationPropertyType type) {
+AnimationPropertyPtr AnimationClip::CreateProperty(AnimationPropertyType type) {
 	std::map<AnimationPropertyType, AnimationPropertyPtr>::iterator iter = _properties.find(type);
 	if (iter != _properties.end())
 	{
@@ -22,10 +22,10 @@ AnimationPropertyWPtr AnimationClip::CreateProperty(AnimationPropertyType type) 
 	return tmp;
 }
 
-void AnimationClip::Update(__int64 time) {
+void AnimationClip::Update(__int64 time, GameObjectPtr ptr) {
 	for (std::map<AnimationPropertyType, AnimationPropertyPtr>::iterator iter = _properties.begin();
 		iter != _properties.end(); ++iter) {
-		iter->second->Update(time);
+		iter->second->Update(time, ptr);
 	}
 }
 

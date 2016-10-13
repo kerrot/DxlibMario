@@ -27,7 +27,7 @@ public:
 
 	SpritePtr LoadSprite(const char* filename);
 
-	AnimationClipWPtr CreateAnimationClip(const char* name);
+	AnimationClipPtr CreateAnimationClip(const char* name);
 
 	GameObjectPtr CreateGameObject();
 	CameraPtr CreateCamera();
