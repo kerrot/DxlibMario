@@ -2,12 +2,13 @@
 #include "smart_ptr.h"
 #include <map>
 
-PTR( AnimationProperty )
-PTR( AnimationData )
-PTR( GameObject )
+PTR(AnimationProperty)
+PTR(AnimationData)
+PTR(GameObject)
 
 enum AnimationPropertyType {
 	ANIMATION_PROPERTY_POSITION,
+	ANIMATION_PROPERTY_SPRITE,
 };
 
 class AnimationProperty {

@@ -12,12 +12,18 @@ friend class GameObject;
 public:
 	virtual ~Animator();
 
-	AnimationStateWPtr AddState(const char* name);
+	AnimationStatePtr AddState(const char* name);
+	void ChangeState(const char* name);
+
 	void Update();
 
 private:
 	Animator();
 
-	std::map<std::string, AnimationStatePtr> _state;
+	std::map<std::string, AnimationStatePtr> _states;
+
+	AnimationStatePtr _currentState;
+
+	__int64 _currentTime;
 };
 

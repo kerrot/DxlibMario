@@ -30,7 +30,7 @@ void AnimationClip::Update(__int64 time, GameObjectPtr ptr) {
 }
 
 __int64 AnimationClip::GetTime() {
-	__int64 time = 0;
+	__int64 time = 1;
 	for (std::map<AnimationPropertyType, AnimationPropertyPtr>::iterator iter = _properties.begin();
 		iter != _properties.end(); ++iter) {
 		__int64 tmp = iter->second->KeyMaxTime();

@@ -25,5 +25,4 @@ private:
 	bool _pause;
 
 	__int64 _current;
-	__int64 _clipTime;
 };

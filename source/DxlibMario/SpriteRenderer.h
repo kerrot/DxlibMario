@@ -36,7 +36,7 @@ private:
 	bool _partOnly;
 	int _layer;
 
-	int pivotX;
-	int pivotY;
+	int _pivotX;
+	int _pivotY;
 };
 

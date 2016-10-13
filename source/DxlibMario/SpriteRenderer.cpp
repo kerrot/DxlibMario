@@ -6,8 +6,8 @@
 #include "GameEngine.h"
 
 SpriteRenderer::SpriteRenderer() 
-: pivotX(0)
-, pivotY(0) {
+: _pivotX(0)
+, _pivotY(0) {
 }
 
 void SpriteRenderer::OnDestroy() {
@@ -49,13 +49,13 @@ void SpriteRenderer::SetDrawRect(const Rect & rect) {
 }
 
 void SpriteRenderer::SetPivot(int x, int y) {
-	pivotX = x;
-	pivotY = y;
+	_pivotX = x;
+	_pivotY = y;
 }
 
 void SpriteRenderer::GetPivot(int & x, int & y) {
-	x = pivotX;
-	y = pivotY;
+	x = _pivotX;
+	y = _pivotY;
 }
 
 void SpriteRenderer::RenderSprite() {
@@ -65,8 +65,8 @@ void SpriteRenderer::RenderSprite() {
 	}
 
 	Vector pos = _gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition();
-	pos.x -= pivotX;
-	pos.y -= pivotY;
+	pos.x -= _pivotX;
+	pos.y -= _pivotY;
 
 	sRenderer->RenderRectSprite(pos, _range, _sprite);
 }

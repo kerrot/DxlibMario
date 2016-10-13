@@ -1,4 +1,5 @@
 #include "SpriteCollider.h"
+#include "SpriteRenderer.h"
 #include "GameObjectHelper.h"
 
 SpriteCollider::SpriteCollider()

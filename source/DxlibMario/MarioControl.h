@@ -9,6 +9,7 @@ public:
 	MarioControl();
 	virtual ~MarioControl();
 
+	virtual void Start();
 	virtual void Update();
 };
 

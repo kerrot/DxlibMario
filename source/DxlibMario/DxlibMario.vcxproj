@@ -91,6 +91,7 @@
     <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="AnimationDataPosition.cpp" />
+    <ClCompile Include="AnimationDataSprite.cpp" />
     <ClCompile Include="AnimationProperty.cpp" />
     <ClCompile Include="AnimationState.cpp" />
     <ClCompile Include="Animator.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="AnimationData.h" />
     <ClInclude Include="AnimationDataPosition.h" />
+    <ClInclude Include="AnimationDataSprite.h" />
     <ClInclude Include="AnimationProperty.h" />
     <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />

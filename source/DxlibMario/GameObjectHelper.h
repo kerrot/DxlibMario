@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "SpriteRenderer.h"
 #include "GameObject.h"
 
 class GameObjectHelper {
