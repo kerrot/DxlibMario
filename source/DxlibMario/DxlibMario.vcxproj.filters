@@ -89,6 +89,7 @@
     <ClCompile Include="AnimationDataSprite.cpp">
       <Filter>GameEngine\Animation\Data</Filter>
     </ClCompile>
+    <ClCompile Include="GoombaControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -190,6 +191,7 @@
     <ClInclude Include="AnimationDataSprite.h">
       <Filter>GameEngine\Animation\Data</Filter>
     </ClInclude>
+    <ClInclude Include="GoombaControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngine">

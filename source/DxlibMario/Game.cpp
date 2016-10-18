@@ -10,6 +10,7 @@
 #include "CameraControl.h"
 #include "MarioControl.h"
 #include "BlockControl.h"
+#include "GoombaControl.h"
 
 GamePtr Game::_instance;
 
@@ -48,6 +49,7 @@ void Game::Init() {
 	obj->SetGlobalPosition(Vector(70, 170));
 	RigidBody2DPtr rigid = obj->AddRigidBody2D();
 	rigid->SetGravity(Vector(0, 1));
+	rigid->SetDrag(0.5);
 	obj->AddSpriteCollider();
 
 	spriteRenderer = obj->AddSpriteRenderer();
@@ -78,6 +80,16 @@ void Game::Init() {
 	spriteRenderer->SetDrawRect(Rect(80, 96, 16, 32));
 	obj->AddSpriteCollider();
 	obj->AddBehavior(BlockControlPtr(new BlockControl));
+
+	//enermy
+	obj = sGameEngine->CreateGameObject();
+	obj->SetGlobalPosition(Vector(200, 250));
+	spriteRenderer = obj->AddSpriteRenderer();
+	rigid = obj->AddRigidBody2D();
+	rigid->SetGravity(Vector(0, 1));
+	obj->AddSpriteCollider();
+	obj->AddBehavior(GoombaControlPtr(new GoombaControl));
+
 
 	//camerawork
 	sCamera->AddBehavior(CameraControlPtr(new CameraControl()));

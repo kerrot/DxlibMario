@@ -11,5 +11,9 @@ public:
 
 	virtual void Start();
 	virtual void Update();
+
+	virtual void CollisionEnter(GameObjectPtr other);
+
+	bool _dead;
 };
 

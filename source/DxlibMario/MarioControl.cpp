@@ -13,7 +13,10 @@
 
 #include "Sprite.h"
 
-MarioControl::MarioControl() {
+#include "GoombaControl.h";
+
+MarioControl::MarioControl() 
+: _dead(false) {
 }
 
 MarioControl::~MarioControl() {
@@ -46,6 +49,10 @@ void MarioControl::Start() {
 }
 
 void MarioControl::Update() {
+	if (_dead) {
+		return;
+	}
+
 	if (sInput->GetKey("X")) {
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
@@ -80,5 +87,12 @@ void MarioControl::Update() {
 		if (animator) {
 			animator->ChangeState("Move");
 		}
+	}
+}
+
+void MarioControl::CollisionEnter(GameObjectPtr other) {
+	GoombaControlPtr enemy = GameObjectHelper::GetGameObjectComponent<GoombaControl>(other);
+	if (enemy) {
+		_dead = true;
 	}
 }

@@ -143,3 +143,6 @@ const Vector & RigidBody2D::GetVelocity() {
 	return _velocity;
 }
 
+void RigidBody2D::SetDrag(double drag) {
+	_drag = drag;
+}

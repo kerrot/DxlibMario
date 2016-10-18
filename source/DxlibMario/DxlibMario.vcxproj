@@ -108,6 +108,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="GoombaControl.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MarioControl.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectHelper.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="GoombaControl.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MarioControl.h" />
     <ClInclude Include="mathmatics.h" />

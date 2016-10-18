@@ -22,6 +22,8 @@ public:
 	void SetVelocity(const Vector& v);
 	const Vector& GetVelocity();
 
+	void SetDrag(double drag);
+
 private:
 	RigidBody2D();
 
