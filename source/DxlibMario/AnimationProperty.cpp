@@ -1,6 +1,7 @@
 #include "AnimationProperty.h"
 #include "AnimationDataPosition.h"
 #include "AnimationDataSprite.h"
+#include "AnimationDataEnable.h"
 
 __int64 AnimationProperty::KeyMaxTime() {
 	if (_keys.empty()) {
@@ -60,6 +61,9 @@ AnimationDataPtr AnimationProperty::AddKey(__int64 time) {
 		break;
 	case ANIMATION_PROPERTY_SPRITE:
 		tmp = AnimationDataSpritePtr(new AnimationDataSprite(time));
+		break;
+	case ANIMATION_PROPERTY_ENABLE:
+		tmp = AnimationDataEnablePtr(new AnimationDataEnable(time));
 		break;
 	default:
 		break;

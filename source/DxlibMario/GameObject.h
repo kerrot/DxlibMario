@@ -1,5 +1,5 @@
 #pragma once
-#include "smart_ptr.h"
+#include "ObjectBase.h"
 #include "mathmatics.h"
 #include <list>
 #include <map>
@@ -13,7 +13,7 @@ PTR( SpriteCollider );
 PTR( Animator )
 PTR( Animation )
 
-class GameObject : public std::enable_shared_from_this < GameObject > {
+class GameObject : public ObjectBase {
 	friend class GameEngine;
 friend class GameObjectHelper;
 public:
@@ -42,9 +42,6 @@ public:
 	Vector GetGlobalPosition() const;
 	Vector GetLocalPosition() const;
 
-	bool IsEnabled() const;
-	void SetEnable(bool v);
-
 protected:
 	GameObject();
 
@@ -60,7 +57,7 @@ protected:
 	std::list<ComponentPtr> _components;
 	std::list<BehaviorPtr> _behaviours;	
 
-	bool _enabled;
+	
 	int _guid;
 	static int guid;
 

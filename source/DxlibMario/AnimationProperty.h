@@ -10,6 +10,7 @@ PTR(GameObject)
 enum AnimationPropertyType {
 	ANIMATION_PROPERTY_POSITION,
 	ANIMATION_PROPERTY_SPRITE,
+	ANIMATION_PROPERTY_ENABLE,
 };
 
 class AnimationProperty {

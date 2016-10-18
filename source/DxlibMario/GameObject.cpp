@@ -10,8 +10,7 @@
 int GameObject::guid = 0;
 
 GameObject::GameObject() 
-: _guid(++guid)
-, _enabled(true) {
+: _guid(++guid) {
 
 }
 
@@ -79,7 +78,7 @@ int GameObject::GetGuid() const {
 SpriteColliderPtr GameObject::AddSpriteCollider() {
 	if (!_collider) {
 		SpriteColliderPtr tmp = SpriteColliderPtr(new SpriteCollider());
-		tmp->_gameobject = shared_from_this();
+		tmp->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 
 		_components.push_back(tmp);
 		_collider = tmp;
@@ -91,7 +90,7 @@ SpriteColliderPtr GameObject::AddSpriteCollider() {
 RigidBody2DPtr GameObject::AddRigidBody2D() {
 	if (!_rigidBody2D) {
 		RigidBody2DPtr tmp = RigidBody2DPtr(new RigidBody2D());
-		tmp->_gameobject = shared_from_this();
+		tmp->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 
 		_components.push_back(tmp);
 		_rigidBody2D = tmp;
@@ -103,7 +102,7 @@ RigidBody2DPtr GameObject::AddRigidBody2D() {
 SpriteRendererPtr GameObject::AddSpriteRenderer() {
 	if (!_spriteRenderer) {
 		SpriteRendererPtr tmp = SpriteRendererPtr(new SpriteRenderer());
-		tmp->_gameobject = shared_from_this();
+		tmp->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 
 		_components.push_back(tmp);
 		_spriteRenderer = tmp;
@@ -116,7 +115,7 @@ SpriteRendererPtr GameObject::AddSpriteRenderer() {
 AnimatorPtr GameObject::AddAnimator() {
 	if (!_animator) {
 		AnimatorPtr tmp = AnimatorPtr(new Animator());
-		tmp->_gameobject = shared_from_this();
+		tmp->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 		_components.push_back(tmp);
 		_animator = tmp;
 	}
@@ -127,7 +126,7 @@ AnimatorPtr GameObject::AddAnimator() {
 AnimationPtr GameObject::AddAnimation() {
 	if (!_animation) {
 		AnimationPtr tmp = AnimationPtr(new Animation());
-		tmp->_gameobject = shared_from_this();
+		tmp->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 		_components.push_back(tmp);
 		_animation = tmp;
 	}
@@ -185,16 +184,8 @@ Vector GameObject::GetLocalPosition() const {
 	return _localPosition;
 }
 
-bool GameObject::IsEnabled() const {
-	return _enabled;
-}
-
-void GameObject::SetEnable(bool v) {
-	_enabled = v;
-}
-
 void GameObject::AddBehavior(BehaviorPtr ptr) {
-	ptr->_gameobject = shared_from_this();
+	ptr->_gameobject = std::dynamic_pointer_cast<GameObject>(shared_from_this());
 
 	_components.push_back(ptr);
 	_behaviours.push_back(ptr);
@@ -203,7 +194,7 @@ void GameObject::AddBehavior(BehaviorPtr ptr) {
 void GameObject::SetParent(GameObjectPtr obj) {
 	_parent = obj;
 
-	GameObjectHelper::AddToGameObjectChildren(obj, shared_from_this());
+	GameObjectHelper::AddToGameObjectChildren(obj, std::dynamic_pointer_cast<GameObject>(shared_from_this()));
 
 	Vector parentPos = (obj == 0) ? Vector() : obj->GetGlobalPosition();
 	_localPosition = _globalPosition - parentPos;

@@ -3,8 +3,7 @@
 Component::~Component() {
 }
 
-Component::Component()
-: _enabled(true) {
+Component::Component() {
 
 }
 
@@ -20,10 +19,6 @@ void Component::Destroy() {
 
 void Component::Render() {
 
-}
-
-bool Component::IsEnabled() const {
-	return _enabled;
 }
 
 GameObjectPtr Component::GetGameObject() {

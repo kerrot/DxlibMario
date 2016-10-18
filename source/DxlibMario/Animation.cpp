@@ -43,7 +43,8 @@ void Animation::Update() {
 		clipTime = tmp->GetTime();
 	}
 
-	_current += (double)((_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime()) * _animationSpeed;
+	__int64 deltaTime = (_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime();
+	_current += (__int64)((double)deltaTime * _animationSpeed);
 
 	if (clipTime > 0) {
 		_current %= clipTime;

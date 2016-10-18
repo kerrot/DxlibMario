@@ -90,6 +90,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="AnimationDataEnable.cpp" />
     <ClCompile Include="AnimationDataPosition.cpp" />
     <ClCompile Include="AnimationDataSprite.cpp" />
     <ClCompile Include="AnimationProperty.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MarioControl.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Process.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody2D.cpp" />
@@ -123,6 +125,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="AnimationData.h" />
+    <ClInclude Include="AnimationDataEnable.h" />
     <ClInclude Include="AnimationDataPosition.h" />
     <ClInclude Include="AnimationDataSprite.h" />
     <ClInclude Include="AnimationProperty.h" />
@@ -147,6 +150,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="MarioControl.h" />
     <ClInclude Include="mathmatics.h" />
+    <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody2D.h" />

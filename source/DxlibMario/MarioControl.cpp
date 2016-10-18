@@ -10,10 +10,11 @@
 #include "AnimationClip.h"
 #include "AnimationProperty.h"
 #include "AnimationDataSprite.h"
+#include "AnimationDataEnable.h"
 
 #include "Sprite.h"
-
-#include "GoombaControl.h";
+#include "SpriteCollider.h"
+#include "GoombaControl.h"
 
 #include "GameTime.h"
 
@@ -38,14 +39,20 @@ void MarioControl::Start() {
 
 	clip = sGameEngine->CreateAnimationClip("marioJump");
 	pro = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
-
 	AnimationDataSpritePtr p = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
 	p->SetSprite(sprite);
 	p->SetDrawRect(Rect(80, 96, 0, 16));
 	p->SetPivot(8, 16);
-
 	AnimationStatePtr jumpState = animator->AddState("Jump");
 	jumpState->SetClip(clip);
+
+
+	clip = sGameEngine->CreateAnimationClip("marioDead");
+	pro = clip->CreateProperty(ANIMATION_PROPERTY_ENABLE);
+	AnimationDataEnablePtr e = std::dynamic_pointer_cast<AnimationDataEnable>(pro->AddKey(0));
+	e->SetEnable(GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject), false);
+	AnimationStatePtr deadState = animator->AddState("Dead");
+	deadState->SetClip(clip);
 
 	animator->SetSpeed(2);
 	animator->SetUnscaled(true);
@@ -97,6 +104,12 @@ void MarioControl::CollisionEnter(GameObjectPtr other) {
 	GoombaControlPtr enemy = GameObjectHelper::GetGameObjectComponent<GoombaControl>(other);
 	if (enemy) {
 		_dead = true;
-		sGameTime->Pause();
+		//sGameTime->Pause();
+
+
+		AnimatorPtr animator = GameObjectHelper::GetGameObjectComponent<Animator>(_gameobject);
+		if (animator) {
+			animator->ChangeState("Dead");
+		}
 	}
 }

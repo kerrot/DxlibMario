@@ -101,11 +101,11 @@ void RigidBody2D::Update() {
 
 	int x, y;
 	if (CheckCollision(x, y)) {
-		int tmpx = _gameobject->GetGlobalPosition().x + _velocity.x;
+		int tmpx = (int)(_gameobject->GetGlobalPosition().x + _velocity.x);
 		if (x != tmpx) {
 			_velocity.x = 0;
 		}
-		int tmpy = _gameobject->GetGlobalPosition().y + _velocity.y;
+		int tmpy = (int)(_gameobject->GetGlobalPosition().y + _velocity.y);
 		if (y != tmpy) {
 			_velocity.y = 0;
 		}

@@ -1,16 +1,14 @@
 #pragma once
-#include "smart_ptr.h"
+#include "ObjectBase.h"
 
 PTR( Component );
 PTR( GameObject );
 
-class Component : public std::enable_shared_from_this < Component > {
+class Component : public ObjectBase {
 	friend class GameObject;
 public:
 	virtual ~Component() = 0;
 	virtual void Render();
-
-	bool IsEnabled() const;
 
 	GameObjectPtr GetGameObject();
 protected:

@@ -34,7 +34,8 @@ void Animator::Update() {
 
 	_currentState->Update(_currentTime, _gameobject);
 
-	_currentTime += (double)((_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime()) * _animationSpeed;
+	__int64 deltaTime = (_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime();
+	_currentTime += (__int64)((double)deltaTime * _animationSpeed);
 
 	__int64 clipTime = _currentState->GetTime();
 	if (clipTime > 0) {
