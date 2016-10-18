@@ -7,7 +7,8 @@
 
 SpriteRenderer::SpriteRenderer() 
 : _pivotX(0)
-, _pivotY(0) {
+, _pivotY(0)
+, _reverse(false) {
 }
 
 void SpriteRenderer::OnDestroy() {
@@ -68,5 +69,14 @@ void SpriteRenderer::RenderSprite() {
 	pos.x -= _pivotX;
 	pos.y -= _pivotY;
 
-	sRenderer->RenderRectSprite(pos, _range, _sprite);
+	Rect tmpRect(_range);
+
+	tmpRect._down = _range._down - _range._up;
+	tmpRect._right = _range._right - _range._left;
+
+	sRenderer->RenderRectSprite(pos, tmpRect, _sprite, _reverse);
+}
+
+void SpriteRenderer::SetReverse(bool v) {
+	_reverse = v;
 }

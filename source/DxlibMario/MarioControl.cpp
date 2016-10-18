@@ -14,6 +14,7 @@
 
 #include "Sprite.h"
 #include "SpriteCollider.h"
+#include "SpriteRenderer.h"
 #include "GoombaControl.h"
 
 #include "GameTime.h"
@@ -81,6 +82,11 @@ void MarioControl::Update() {
 	}
 
 	if (sInput->GetKey("ARROW_LEFT")) {
+		SpriteRendererPtr renderer = GameObjectHelper::GetGameObjectComponent<SpriteRenderer>(_gameobject);
+		if (renderer) {
+			renderer->SetReverse(true);
+		}
+
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
 			rigid->SetAcceleration(Vector(-1, 0));
@@ -93,6 +99,11 @@ void MarioControl::Update() {
 	}
 
 	if (sInput->GetKey("ARROW_RIGHT")) {
+		SpriteRendererPtr renderer = GameObjectHelper::GetGameObjectComponent<SpriteRenderer>(_gameobject);
+		if (renderer) {
+			renderer->SetReverse(false);
+		}
+		
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
 			rigid->SetAcceleration(Vector(1, 0));

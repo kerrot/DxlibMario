@@ -25,6 +25,8 @@ public:
 	void SetPivot(int x, int y);
 	void GetPivot(int& x, int& y);
 
+	void SetReverse(bool v);
+
 private:
 	SpriteRenderer();
 
@@ -38,5 +40,7 @@ private:
 
 	int _pivotX;
 	int _pivotY;
+
+	bool _reverse;
 };
 
