@@ -15,6 +15,8 @@
 
 #include "GoombaControl.h";
 
+#include "GameTime.h"
+
 MarioControl::MarioControl() 
 : _dead(false) {
 }
@@ -46,6 +48,7 @@ void MarioControl::Start() {
 	jumpState->SetClip(clip);
 
 	animator->SetSpeed(2);
+	animator->SetUnscaled(true);
 }
 
 void MarioControl::Update() {
@@ -94,5 +97,6 @@ void MarioControl::CollisionEnter(GameObjectPtr other) {
 	GoombaControlPtr enemy = GameObjectHelper::GetGameObjectComponent<GoombaControl>(other);
 	if (enemy) {
 		_dead = true;
+		sGameTime->Pause();
 	}
 }

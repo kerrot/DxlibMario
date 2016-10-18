@@ -4,7 +4,9 @@
 
 Animation::Animation()
 : _current(0)
-, _pause(true) {
+, _pause(true)
+, _unscaledTime(false)
+, _animationSpeed(1) {
 }
 
 
@@ -41,9 +43,17 @@ void Animation::Update() {
 		clipTime = tmp->GetTime();
 	}
 
-	_current += sGameTime->DeltaTime();
+	_current += (double)((_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime()) * _animationSpeed;
 
 	if (clipTime > 0) {
 		_current %= clipTime;
 	}
+}
+
+void Animation::SetSpeed(double speed) {
+	_animationSpeed = speed;
+}
+
+void Animation::SetUnscaled(bool v) {
+	_unscaledTime = v;
 }

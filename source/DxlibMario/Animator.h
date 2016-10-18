@@ -18,7 +18,7 @@ public:
 	void Update();
 
 	void SetSpeed(double speed);
-
+	void SetUnscaled(bool v);
 private:
 	Animator();
 
@@ -26,6 +26,7 @@ private:
 
 	AnimationStatePtr _currentState;
 
+	bool _unscaledTime;
 	__int64 _currentTime;
 	double _animationSpeed;
 };

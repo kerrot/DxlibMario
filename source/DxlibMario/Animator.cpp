@@ -3,7 +3,8 @@
 #include "GameTime.h"
 
 Animator::Animator()
-: _animationSpeed(1) {
+: _animationSpeed(1)
+, _unscaledTime(false) {
 }
 
 
@@ -33,7 +34,7 @@ void Animator::Update() {
 
 	_currentState->Update(_currentTime, _gameobject);
 
-	_currentTime += (__int64)((double)sGameTime->DeltaTime() * _animationSpeed);
+	_currentTime += (double)((_unscaledTime) ? sGameTime->UnPausedDeltaTime() : sGameTime->DeltaTime()) * _animationSpeed;
 
 	__int64 clipTime = _currentState->GetTime();
 	if (clipTime > 0) {
@@ -51,4 +52,8 @@ void Animator::ChangeState(const char * name) {
 
 void Animator::SetSpeed(double speed) {
 	_animationSpeed = speed;
+}
+
+void Animator::SetUnscaled(bool v) {
+	_unscaledTime = v;
 }

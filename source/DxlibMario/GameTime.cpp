@@ -37,6 +37,9 @@ __int64 GameTime::Current() {
 }
 
 __int64 GameTime::DeltaTime() {
+	if (_pause) {
+		return 0;
+	}
 	return _current - _last;
 }
 
