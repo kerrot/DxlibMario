@@ -66,3 +66,15 @@ void AnimationDataSprite::GetPivot(int & x, int & y) {
 	x = _pivotX;
 	y = _pivotY;
 }
+
+void AnimationDataSprite::SetSpriteAnimation(std::vector<AnimationDataPtr>& data, SpritePtr sprite, int sizex, int sizey, int startx, int starty, int pivotx, int pivoty) {
+	for (int i = 0; i < (int)data.size(); ++i) {
+		AnimationDataSpritePtr ptr = std::dynamic_pointer_cast<AnimationDataSprite>(data[i]);
+		if (ptr) {
+			ptr->SetSprite(sprite);
+			int positionx = (i == data.size() - 1) ? startx + (data.size() - 2) * sizex : startx + i * sizex;
+			ptr->SetDrawRect(Rect(positionx, positionx + sizex, starty, starty + sizey));
+			ptr->SetPivot(pivotx, pivoty);
+		}
+	}
+}

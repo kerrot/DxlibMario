@@ -1,6 +1,7 @@
 #pragma once
 #include "smart_ptr.h"
 #include <map>
+#include <vector>
 
 PTR(AnimationProperty)
 PTR(AnimationData)
@@ -18,6 +19,8 @@ public:
 
 	void Update(__int64 time, GameObjectPtr ptr);
 	AnimationDataPtr AddKey(__int64 time);
+
+	std::vector<AnimationDataPtr> AddPeroidKeys(__int64 period, int num);
 
 	__int64 KeyMaxTime();
 

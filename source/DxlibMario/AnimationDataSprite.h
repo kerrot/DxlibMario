@@ -2,6 +2,7 @@
 #include "AnimationData.h"
 #include "mathmatics.h"
 #include "Common.h"
+#include <vector>
 
 PTR(Sprite)
 PTR(AnimationDataSprite)
@@ -21,6 +22,8 @@ public:
 
 	void SetPivot(int x, int y);
 	void GetPivot(int& x, int& y);
+
+	static void SetSpriteAnimation(std::vector<AnimationDataPtr>& data, SpritePtr sprite, int sizex, int sizey, int startx, int starty, int pivotx, int pivoty);
 
 private:
 	AnimationDataSprite(__int64 time);

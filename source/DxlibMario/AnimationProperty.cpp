@@ -71,3 +71,18 @@ AnimationDataPtr AnimationProperty::AddKey(__int64 time) {
 
 	return tmp;
 }
+
+std::vector<AnimationDataPtr> AnimationProperty::AddPeroidKeys(__int64 period, int num) {
+	static std::vector<AnimationDataPtr> empty;
+	
+	if (num > 0 && period > 0) {
+		std::vector<AnimationDataPtr> data(num);	
+		for (int i = 0; i < num; ++i) {
+			data[i] = AddKey(period * i);
+		}
+
+		return data;
+	}
+
+	return empty;
+}

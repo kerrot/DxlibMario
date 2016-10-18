@@ -25,22 +25,7 @@ void MarioControl::Start() {
 
 	SpritePtr sprite = sGameEngine->LoadSprite("Resources/player0.png");
 
-	AnimationDataSpritePtr p1 = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
-	p1->SetSprite(sprite);
-	p1->SetDrawRect(Rect(16, 32, 0, 16));
-	p1->SetPivot(8, 16);
-	AnimationDataSpritePtr p2 = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(500));
-	p2->SetSprite(sprite);
-	p2->SetDrawRect(Rect(32, 48, 0, 16));
-	p2->SetPivot(8, 16);
-	AnimationDataSpritePtr p3 = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(1000));
-	p3->SetSprite(sprite);
-	p3->SetDrawRect(Rect(48, 64, 0, 16));
-	p3->SetPivot(8, 16);
-	AnimationDataSpritePtr p4 = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(1500));
-	p4->SetSprite(sprite);
-	p4->SetDrawRect(Rect(48, 64, 0, 16));
-	p4->SetPivot(8, 16);
+	AnimationDataSprite::SetSpriteAnimation(pro->AddPeroidKeys(500, 4), sprite, 16, 16, 16, 0, 8, 16);
 
 	AnimatorPtr animator = _gameobject->AddAnimator();
 	AnimationStatePtr moveState = animator->AddState("Move");
@@ -49,13 +34,15 @@ void MarioControl::Start() {
 	clip = sGameEngine->CreateAnimationClip("marioJump");
 	pro = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
 
-	p1 = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
-	p1->SetSprite(sprite);
-	p1->SetDrawRect(Rect(80, 96, 0, 16));
-	p1->SetPivot(8, 16);
+	AnimationDataSpritePtr p = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
+	p->SetSprite(sprite);
+	p->SetDrawRect(Rect(80, 96, 0, 16));
+	p->SetPivot(8, 16);
 
 	AnimationStatePtr jumpState = animator->AddState("Jump");
 	jumpState->SetClip(clip);
+
+	animator->SetSpeed(2);
 }
 
 void MarioControl::Update() {

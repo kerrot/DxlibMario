@@ -17,6 +17,8 @@ public:
 
 	void Update();
 
+	void SetSpeed(double speed);
+
 private:
 	Animator();
 
@@ -25,5 +27,6 @@ private:
 	AnimationStatePtr _currentState;
 
 	__int64 _currentTime;
+	double _animationSpeed;
 };
 
