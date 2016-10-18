@@ -96,6 +96,7 @@ void RigidBody2D::ComputeFinalPosition(int & x, int & y, const Rect & rect1, con
 
 void RigidBody2D::Update() {
 	_velocity += (_acceleration + _gravity) ;
+	_acceleration = Vector();
 
 	_velocity = _velocity.normalize() * (_velocity.getLength() - _drag);
 
@@ -115,8 +116,6 @@ void RigidBody2D::Update() {
 	else {
 		_gameobject->SetGlobalPosition(_gameobject->GetGlobalPosition() + _velocity);
 	}
-
-	_acceleration = Vector();
 }
 
 void RigidBody2D::SetGravity(const Vector & g) {
