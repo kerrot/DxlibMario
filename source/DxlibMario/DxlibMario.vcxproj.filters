@@ -86,9 +86,6 @@
     <ClCompile Include="GoombaControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectBase.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameEngine\Component</Filter>
     </ClCompile>
@@ -97,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="AnimationDataEnable.cpp">
       <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>GameEngine\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,9 +193,6 @@
     <ClInclude Include="GoombaControl.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectBase.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine\Component</Filter>
     </ClInclude>
@@ -207,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="AnimationDataEnable.h">
       <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>GameEngine\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
