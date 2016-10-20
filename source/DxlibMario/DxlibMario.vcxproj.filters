@@ -98,6 +98,9 @@
     <ClCompile Include="ObjectBase.cpp">
       <Filter>GameEngine\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DxlibInput.h">

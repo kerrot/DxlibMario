@@ -5,6 +5,7 @@
 struct Rect;
 
 PTR( RigidBody2D )
+PTR( GameObject )
 
 class RigidBody2D : public Component {
 friend class GameObject;
@@ -16,9 +17,11 @@ public:
 	void SetGravity(const Vector& g);
 	const Vector& GetGravity();
 
+	void AddAcceleration(const Vector& a);
 	void SetAcceleration(const Vector& a);
 	const Vector& GetAcceleration();
 
+	void AddVelocity(const Vector& v);
 	void SetVelocity(const Vector& v);
 	const Vector& GetVelocity();
 
@@ -27,8 +30,9 @@ public:
 private:
 	RigidBody2D();
 
-	bool CheckCollision(int & x, int & y);
-	void ComputeFinalPosition(int &x, int&y, const Rect& rect1, const Rect& rect2);
+	void ComputeCollision(int & finalx, int & finaly, GameObjectPtr other);
+	void ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2);
+	void ComputeSingleShift(int& shift, Rect & rect1, Rect & rect2, const Vector& v);
 
 	double _drag;
 

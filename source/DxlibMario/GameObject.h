@@ -36,6 +36,7 @@ public:
 
 	void SetParent(GameObjectPtr obj);
 
+	void Translate(const Vector& pos);
 	void SetGlobalPosition(const Vector& pos);
 	void SetlocalPosition(const Vector& pos);
 

@@ -72,7 +72,7 @@ void MarioControl::Update() {
 	if (sInput->GetKey("X")) {
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
-			rigid->SetAcceleration(Vector(0, -3));
+			rigid->AddAcceleration(Vector(0, -3));
 		}
 
 		AnimatorPtr animator = GameObjectHelper::GetGameObjectComponent<Animator>(_gameobject);
@@ -89,7 +89,7 @@ void MarioControl::Update() {
 
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
-			rigid->SetAcceleration(Vector(-1, 0));
+			rigid->AddAcceleration(Vector(-1, 0));
 		}
 
 		AnimatorPtr animator = GameObjectHelper::GetGameObjectComponent<Animator>(_gameobject);
@@ -106,7 +106,7 @@ void MarioControl::Update() {
 		
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
-			rigid->SetAcceleration(Vector(1, 0));
+			rigid->AddAcceleration(Vector(1, 0));
 		}
 
 		AnimatorPtr animator = GameObjectHelper::GetGameObjectComponent<Animator>(_gameobject);
@@ -129,7 +129,8 @@ void MarioControl::CollisionEnter(GameObjectPtr other) {
 
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
-			rigid->SetAcceleration(Vector(0, -25, 0));
+			rigid->SetAcceleration(Vector());
+			rigid->SetVelocity(Vector(0, -25, 0));
 		}
 	}
 }

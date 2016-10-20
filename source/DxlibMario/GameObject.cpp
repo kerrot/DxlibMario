@@ -200,6 +200,10 @@ void GameObject::SetParent(GameObjectPtr obj) {
 	_localPosition = _globalPosition - parentPos;
 }
 
+void GameObject::Translate(const Vector & pos) {
+	SetGlobalPosition(_globalPosition + pos);
+}
+
 void GameObject::SetGlobalPosition(const Vector& pos) {
 	Vector parentPos = (_parent == 0) ? Vector() : _parent->GetGlobalPosition();
 	_localPosition = pos - parentPos;

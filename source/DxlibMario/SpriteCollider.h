@@ -2,7 +2,10 @@
 #include "Component.h"
 #include "Common.h"
 
+struct Vector;
+
 PTR( SpriteCollider )
+PTR( GameObject )
 
 class SpriteCollider : public Component {
 	friend class GameObject;
@@ -13,6 +16,8 @@ public:
 	void SetCustomRange(const Rect & rect);
 
 	void EnableTrace();
+
+	static bool CollideWith(GameObjectPtr obj, GameObjectPtr other, const Vector& velocity);
 
 private:
 	SpriteCollider();

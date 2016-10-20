@@ -4,93 +4,91 @@
 #include "SpriteCollider.h"
 #include "GameEngine.h"
 #include "GameTime.h"
+#include <cmath>
 
 RigidBody2D::RigidBody2D()
 : _drag(0) {
-
+	
 }
 
 RigidBody2D::~RigidBody2D() {
 }
 
-bool RigidBody2D::CheckCollision(int & x, int & y) {
-	bool result = false;
+void RigidBody2D::ComputeCollision(int & finalx, int & finaly, GameObjectPtr other) {
+	SpriteColliderPtr collider1 = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject);
+	SpriteColliderPtr collider2 = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(other);
 
-	SpriteColliderPtr collider = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject);
-	if (collider && collider->IsEnabled()) {
-		Vector pos = _gameobject->GetGlobalPosition() + _velocity;
-		Rect rect(collider->GetRect());
-		x = (int)pos.x;
-		y = (int)pos.y;
+	Rect rect1(collider1->GetRect()), rect2(collider2->GetRect());
+	rect1.Shift((int)_gameobject->GetGlobalPosition().x, (int)_gameobject->GetGlobalPosition().y);
+	rect2.Shift((int)other->GetGlobalPosition().x, (int)other->GetGlobalPosition().y);
 
-		const std::map<int, GameObjectPtr>& objs = sGameEngine->GetGameObjects();
-		for (std::map<int, GameObjectPtr>::const_iterator iter = objs.begin();
-			iter != objs.end(); ++iter) {
+	int tmpx = finalx, tmpy = finaly;
+	ComputeFinalShift(tmpx, tmpy, rect1, rect2);
 
-			SpriteColliderPtr tmp = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(iter->second);
-			if (_gameobject == iter->second || !tmp || !tmp->IsEnabled()) {
-				continue;
-			}
-
-			Rect rect1(rect), rect2(tmp->GetRect());
-			rect1.Shift((int)pos.x, (int)pos.y);
-			rect2.Shift((int)iter->second->GetGlobalPosition().x, (int)iter->second->GetGlobalPosition().y);
-
-			if (Rect::IsCollision(rect1, rect2)) {
-				result = true;
-
-				GameObjectCollision(_gameobject, iter->second);
-				GameObjectCollision(iter->second, _gameobject);
-
-				ComputeFinalPosition(x, y, rect, rect2);
-			}
-		}
+	if (abs(tmpx) < abs(finalx)) {
+		finalx = tmpx;
 	}
-
-	return result;
+	if (abs(tmpy) < abs(finaly)) {
+		finaly = tmpy;
+	}
 }
 
-void RigidBody2D::ComputeFinalPosition(int & x, int & y, const Rect & rect1, const Rect & rect2) {
-	
-	if (_velocity.x != 0)
-	{
-		Rect tmpRect(rect1);
-		tmpRect.Shift((int)_gameobject->GetGlobalPosition().x + (int)_velocity.x, (int)_gameobject->GetGlobalPosition().y);
-		if (Rect::IsCollision(tmpRect, rect2)) {
-			if (_velocity.x > 0) {
-				int tmp = rect2._left - 1 - rect1._right;
-				if (x > tmp) {
-					x = tmp;
-				}
-			}
-			else {
-				int tmp = rect2._right + 1 - rect1._left;
-				if (x < tmp) {
-					x = tmp;
-				}
-			}
-		}
+void RigidBody2D::ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2) {
+	if (_velocity.x == 0) {
+		ComputeSingleShift(y, rect1, rect2, _velocity);
 	}
-	
-	if (_velocity.y != 0)
-	{
-		Rect tmpRect(rect1);
-		tmpRect.Shift((int)_gameobject->GetGlobalPosition().x, (int)_gameobject->GetGlobalPosition().y + (int)_velocity.y);
-		if (Rect::IsCollision(tmpRect, rect2)) {
-			if (_velocity.y > 0) {
-				int tmp = rect2._up - 1 - rect1._down;
-				if (y > tmp) {
-					y = tmp;
-				}
+	else if (_velocity.y == 0) {
+		ComputeSingleShift(x, rect1, rect2, _velocity);
+	}
+	else {
+		bool xfirst = true;
+		if (LineSegmentOverlap(rect1._left, rect1._right, rect2._left, rect2._right)) {
+			xfirst = false;
+		}
+		else if (LineSegmentOverlap(rect1._up, rect1._down, rect2._up, rect2._down)) {
+			xfirst = true;
+		}
+		else {
+
+			double width = (_velocity.x > 0) ? rect2._left - rect1._right - 1 : rect1._left - rect2._right - 1;
+			double height = (_velocity.y > 0) ? rect2._up - rect1._down - 1 : rect1._up - rect2._down - 1;
+
+			if (width == 0) {
+				xfirst = false;
+			}
+			else if (height == 0) {
+				xfirst = true;
 			}
 			else {
-				int tmp = rect2._down + 1 - rect1._up;
-				if (y < tmp) {
-					y = tmp;
-				}
+				double rate = width / height;
+				xfirst = (rate < _velocity.x / _velocity.y);
 			}
 		}
 
+		if (xfirst) {
+			ComputeSingleShift(x, rect1, rect2, Vector(_velocity.x, 0));
+			ComputeSingleShift(y, rect1, rect2, Vector(0, _velocity.y));
+		}
+		else {
+			ComputeSingleShift(y, rect1, rect2, Vector(0, _velocity.y));
+			ComputeSingleShift(x, rect1, rect2, Vector(_velocity.x, 0));
+		}
+	}
+}
+
+void RigidBody2D::ComputeSingleShift(int& shift, Rect & rect1, Rect & rect2, const Vector& v) {
+	Rect tmp(rect1);
+	tmp.Shift((int)v.x, (int)v.y);
+
+	if (Rect::IsCollision(tmp, rect2)) {
+		if (v.x == 0) {
+			shift = (v.y > 0) ? rect2._up - rect1._down - 1 : rect2._down - rect1._up + 1;
+			rect1.Shift(0, shift);
+		}
+		else {
+			shift = (v.x > 0) ? rect2._left - rect1._right - 1 : rect2._right - rect1._left + 1;
+			rect1.Shift(shift, 0);
+		}
 	}
 }
 
@@ -100,21 +98,37 @@ void RigidBody2D::Update() {
 
 	_velocity = _velocity.normalize() * (_velocity.getLength() - _drag);
 
-	int x, y;
-	if (CheckCollision(x, y)) {
-		int tmpx = (int)(_gameobject->GetGlobalPosition().x + _velocity.x);
-		if (x != tmpx) {
+	int finalx, tmpx, finaly, tmpy;
+	finalx = tmpx = (int)_velocity.x;
+	finaly = tmpy = (int)_velocity.y;
+	if (finalx != 0 || finaly != 0) {
+		std::list<GameObjectPtr> hits;
+
+		const std::map<int, GameObjectPtr>& objs = sGameEngine->GetGameObjects();
+		for (std::map<int, GameObjectPtr>::const_iterator iter = objs.begin();
+			iter != objs.end(); ++iter) {
+
+			if (SpriteCollider::CollideWith(_gameobject, iter->second, _velocity)) {
+				hits.push_back(iter->second);
+
+				ComputeCollision(finalx, finaly, iter->second);
+			}
+		}
+
+		if (finalx != tmpx) {
 			_velocity.x = 0;
 		}
-		int tmpy = (int)(_gameobject->GetGlobalPosition().y + _velocity.y);
-		if (y != tmpy) {
+		if (finaly != tmpy) {
 			_velocity.y = 0;
 		}
 
-		_gameobject->SetGlobalPosition(Vector(x, y));
-	}
-	else {
-		_gameobject->SetGlobalPosition(_gameobject->GetGlobalPosition() + _velocity);
+		_gameobject->Translate(Vector(finalx, finaly));
+
+		for (std::list<GameObjectPtr>::iterator iter = hits.begin();
+			iter != hits.end(); ++iter) {
+			GameObjectCollision(_gameobject, *iter);
+			GameObjectCollision(*iter, _gameobject);
+		}
 	}
 }
 
@@ -126,12 +140,20 @@ const Vector & RigidBody2D::GetGravity() {
 	return _gravity;
 }
 
+void RigidBody2D::AddAcceleration(const Vector & a) {
+	_acceleration += a;
+}
+
 void RigidBody2D::SetAcceleration(const Vector & a) {
 	_acceleration = a;
 }
 
 const Vector & RigidBody2D::GetAcceleration() {
 	return _acceleration;
+}
+
+void RigidBody2D::AddVelocity(const Vector & v) {
+	_velocity += v;
 }
 
 void RigidBody2D::SetVelocity(const Vector & v) {
