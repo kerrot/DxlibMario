@@ -192,6 +192,10 @@ void GameObject::AddBehavior(BehaviorPtr ptr) {
 }
 
 void GameObject::SetParent(GameObjectPtr obj) {
+	if (_parent != 0 && obj == 0) {
+		GameObjectHelper::RemoveGameObjectChildren(_parent, std::dynamic_pointer_cast<GameObject>(shared_from_this()));
+	}
+
 	_parent = obj;
 
 	GameObjectHelper::AddToGameObjectChildren(obj, std::dynamic_pointer_cast<GameObject>(shared_from_this()));

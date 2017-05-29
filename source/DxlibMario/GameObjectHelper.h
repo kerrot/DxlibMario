@@ -8,6 +8,7 @@ public:
 	static std::shared_ptr<T> GetGameObjectComponent(GameObjectPtr obj);
 
 	static void AddToGameObjectChildren(GameObjectPtr parent, GameObjectPtr child);
+	static void RemoveGameObjectChildren(GameObjectPtr parent, GameObjectPtr child);
 
 private:
 	GameObjectHelper ();
@@ -36,5 +37,17 @@ inline void GameObjectHelper::AddToGameObjectChildren(GameObjectPtr parent, Game
 	std::map<int, GameObjectPtr>::iterator iter = parent->_children.find(child->GetGuid());
 	if (iter != parent->_children.end()) {
 		parent->_children[child->GetGuid()] = child;
+	}
+}
+
+inline void GameObjectHelper::RemoveGameObjectChildren(GameObjectPtr parent, GameObjectPtr child) {
+	if (parent == 0 || child == 0)
+	{
+		return;
+	}
+
+	std::map<int, GameObjectPtr>::iterator iter = parent->_children.find(child->GetGuid());
+	if (iter != parent->_children.end()) {
+		parent->_children.erase(iter);
 	}
 }
