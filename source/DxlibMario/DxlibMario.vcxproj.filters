@@ -2,18 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="DxlibInput.cpp">
-      <Filter>Dxlib</Filter>
-    </ClCompile>
-    <ClCompile Include="DxlibProcess.cpp">
-      <Filter>Dxlib</Filter>
-    </ClCompile>
-    <ClCompile Include="DxlibRenderer.cpp">
-      <Filter>Dxlib</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="CameraControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -23,219 +11,33 @@
     <ClCompile Include="MarioControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationClip.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationState.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="RigidBody2D.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteCollider.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>GameEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Process.cpp">
-      <Filter>GameEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>GameEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>GameEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Behavior.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="BlockControl.cpp">
       <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTime.cpp">
-      <Filter>GameEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="DxlibGameTime.cpp">
-      <Filter>Dxlib</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationProperty.cpp">
-      <Filter>GameEngine\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationData.cpp">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationDataPosition.cpp">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationDataSprite.cpp">
-      <Filter>GameEngine\Animation\Data</Filter>
     </ClCompile>
     <ClCompile Include="GoombaControl.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationDataEnable.cpp">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectBase.cpp">
-      <Filter>GameEngine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DxlibInput.h">
-      <Filter>Dxlib</Filter>
-    </ClInclude>
-    <ClInclude Include="DxlibProcess.h">
-      <Filter>Dxlib</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="mathmatics.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="smart_ptr.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="CameraControl.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="MarioControl.h">
       <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationClip.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationState.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBody2D.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteCollider.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Process.h">
-      <Filter>GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Behavior.h">
-      <Filter>GameEngine\Component</Filter>
     </ClInclude>
     <ClInclude Include="BlockControl.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameTime.h">
-      <Filter>GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="DxlibGameTime.h">
-      <Filter>Dxlib</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationProperty.h">
-      <Filter>GameEngine\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationData.h">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationDataPosition.h">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="DxlibRenderer.h">
-      <Filter>Dxlib</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationDataSprite.h">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClInclude>
     <ClInclude Include="GoombaControl.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectHelper.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationDataEnable.h">
-      <Filter>GameEngine\Animation\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectBase.h">
-      <Filter>GameEngine\Component</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GameEngine">
-      <UniqueIdentifier>{ae9835e4-915e-42a9-89ba-10d52a805dcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Dxlib">
-      <UniqueIdentifier>{fa3ed318-f5ed-49bf-808b-5c5907422d86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{081cd91e-0771-4a71-9d8c-eebc1f2c7db1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{078e2bdd-2e52-4929-919a-311192f15352}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\Animation">
-      <UniqueIdentifier>{08aa947f-65f2-4328-b212-a12f76d51575}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\Component">
-      <UniqueIdentifier>{92220b1c-633f-42c0-ab0f-84b1a535ab42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\Core">
-      <UniqueIdentifier>{78833c18-dd74-4f83-82c4-af2f81816166}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\Animation\Data">
-      <UniqueIdentifier>{7183c512-098d-4ae0-8280-b1a9d07134d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

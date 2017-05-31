@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{963a749d-6027-460c-849f-9e6c7dfb3327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dxlib">
+      <UniqueIdentifier>{bf3aa301-c05e-46f5-a705-adf02549be59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{d79ec71a-0ecc-45c5-969d-808b5a6e7c5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Animation">
+      <UniqueIdentifier>{2aea1c3c-8772-465c-a984-cbff3126d788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Animation\Data">
+      <UniqueIdentifier>{a408af3a-eda3-463f-8017-f217a46c792f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Component">
+      <UniqueIdentifier>{3f9bc571-623a-4fe6-9c94-d58faa0b8422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Core">
+      <UniqueIdentifier>{417eb4c2-97d6-48bc-9ce1-51a470a6e83f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mathmatics.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="smart_ptr.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DxlibGameTime.h">
+      <Filter>Dxlib</Filter>
+    </ClInclude>
+    <ClInclude Include="DxlibInput.h">
+      <Filter>Dxlib</Filter>
+    </ClInclude>
+    <ClInclude Include="DxlibProcess.h">
+      <Filter>Dxlib</Filter>
+    </ClInclude>
+    <ClInclude Include="DxlibRenderer.h">
+      <Filter>Dxlib</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationData.h">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataEnable.h">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataPosition.h">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataSprite.h">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationClip.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationProperty.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectHelper.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody2D.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteCollider.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>GameEngine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>GameEngine\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="DxlibGameTime.cpp">
+      <Filter>Dxlib</Filter>
+    </ClCompile>
+    <ClCompile Include="DxlibInput.cpp">
+      <Filter>Dxlib</Filter>
+    </ClCompile>
+    <ClCompile Include="DxlibProcess.cpp">
+      <Filter>Dxlib</Filter>
+    </ClCompile>
+    <ClCompile Include="DxlibRenderer.cpp">
+      <Filter>Dxlib</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationData.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationDataEnable.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationDataPosition.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationDataSprite.cpp">
+      <Filter>GameEngine\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationClip.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationProperty.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>GameEngine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody2D.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteCollider.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameEngine\Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

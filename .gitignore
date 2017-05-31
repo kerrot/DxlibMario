@@ -1,4 +1,4 @@
-# Compiled Object files
+﻿# Compiled Object files
 *.slo
 *.lo
 *.o
@@ -38,3 +38,12 @@ bin/Log.txt
 *.sdf
 /source/*.opendb
 source/DxlibMario/Log.txt
+/source/ThirdParty/DxLib_VC/サンプルプログラム実行用フォルダ
+/source/ThirdParty/DxLib_VC/help
+/source/ThirdParty/DxLib_VC/Tool
+/bin/*.iobj
+/bin/*.ipdb
+/source/DMEngine/Debug
+/source/DMEngine/Lib/*.pdb
+/source/DMEngine/Release
+/source/DxlibMario/Release
