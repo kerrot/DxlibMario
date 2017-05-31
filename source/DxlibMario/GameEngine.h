@@ -17,7 +17,7 @@ PTR( GameTime );
 
 class GameEngine {
 
-friend class SpriteRenderer;
+friend class SpriteRenderer; // for layer setup
 public:
 	static GameEnginePtr GetInstance();
 	virtual ~GameEngine();
@@ -39,20 +39,23 @@ public:
 
 	CameraPtr GetMainCamera();
 
+	// get all object in game
 	const std::map<int, GameObjectPtr>& GetGameObjects();
-
+	// remove object in game, fist remove in scene and put to wait list,  will destroy in the end of frame
 	void DestroyObject(GameObjectPtr obj);
-
+	//main loop
 	void Run();
 private:
 	GameEngine();
 	void UpdateObject();
 	void RenderObject();
 	void RenderSprite();
-	void CheckCollider();
+	void CheckCollision();
 
+	//really free the memory of the objects waiting to destroy
 	void DeleteObjects();
 
+	// only call by spriterenderer
 	void SetSpritetLayer(int layer, SpriteRendererPtr renderer);
 	void ClearSpritetLayer(int layer, int guid);
 private:
@@ -77,7 +80,7 @@ private:
 
 	//       layer
 	std::map<int, SpriteMap> _layerSprite;
-
+	//       clip name
 	std::map<std::string, AnimationClipPtr> _clips;
 };
 

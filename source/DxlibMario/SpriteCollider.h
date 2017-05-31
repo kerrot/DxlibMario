@@ -15,8 +15,10 @@ public:
 	const Rect& GetRect();
 	void SetCustomRange(const Rect & rect);
 
+	//auto adjust to sprite renderer setting
 	void EnableTrace();
 
+	//judge whether two colliders collision with velocity. (to prevent penetration)
 	static bool CollideWith(GameObjectPtr obj, GameObjectPtr other, const Vector& velocity);
 
 private:

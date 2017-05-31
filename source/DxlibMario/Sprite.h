@@ -18,7 +18,7 @@ public:
 private:
 	Sprite(int num, unsigned int width, unsigned int height);
 
-	int _num;
+	int _num;	//serial number used in game engine
 	bool _transparent;
 	
 	unsigned int _width;

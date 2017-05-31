@@ -30,11 +30,11 @@ void AnimationDataSprite::Apply(__int64 time, GameObjectPtr ptr, AnimationDataPt
 
 	if (time >  next->GetTime()) {
 		renderer->SetSprite(data->GetSprite());
-		renderer->SetDrawRect(data->GetRect());
+		renderer->SetRect(data->GetRect());
 	}
 	else {
 		renderer->SetSprite(_sprite);
-		renderer->SetDrawRect(_range);
+		renderer->SetRect(_range);
 	}
 }
 

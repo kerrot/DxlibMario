@@ -8,8 +8,8 @@ public:
 	static GamePtr GetInstance();
 	virtual ~Game();
 
-	void Init();
-	void Run();
+	void Init();	// Game data setup
+	void Run();		// Game main loop
 private:
 	Game();
 

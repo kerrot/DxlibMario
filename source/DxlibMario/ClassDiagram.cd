@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="GameEngine  generates core parts:&#xD;&#xA;	Renderer		for rendering method&#xD;&#xA;	Process		for windows message&#xD;&#xA;	Input		for keyboard input&#xD;&#xA;	GameTime		for time used in game&#xD;&#xA;&#xD;&#xA;It is easy to switch base SDK by createing drived classes and overriding the abstract class.&#xD;&#xA;Thus, the whole system not dependent on any SDK, game engine can choose which SDK to use.&#xD;&#xA;&#xD;&#xA;*Now only implement Dxlib">
+    <Position X="32.604" Y="0.5" Height="3.561" Width="5.468" />
+  </Comment>
+  <Comment CommentText="Base structure about Math">
+    <Position X="22.683" Y="0.5" Height="0.787" Width="1.775" />
+  </Comment>
+  <Comment CommentText="Object system">
+    <Position X="13.314" Y="0.508" Height="0.787" Width="1.775" />
+  </Comment>
+  <Comment CommentText="Custom Script">
+    <Position X="6.013" Y="6.201" Height="0.34" Width="8.188" />
+  </Comment>
+  <Comment CommentText="An animation has one animation clip with several key frame(Animation Data)">
+    <Position X="3.524" Y="4.643" Height="0.787" Width="1.775" />
+  </Comment>
+  <Class Name="Sprite" Collapsed="true">
+    <Position X="15.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACEAAAAAAgAAABABBAAAAAQAAAgAEAAAAI=</HashCode>
+      <FileName>Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animation" Collapsed="true">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgEAAAAIAAAAAAggAAABAAAABAIAAAoAAABACAAAE=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationClip" Collapsed="true">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAIAAAAAAAEAAAAAAAAAAQAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>AnimationClip.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationProperty" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwwAIAAEAAIAAQAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>AnimationProperty.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationData" Collapsed="true">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAIAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnimationData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationDataEnable" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAEBAAAAAAA=</HashCode>
+      <FileName>AnimationDataEnable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationDataPosition" Collapsed="true">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggAAAAAAADAAAAAAAAAAAAAAAAAAAgAAEAAAgAAAAAA=</HashCode>
+      <FileName>AnimationDataPosition.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationDataSprite" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAGABABEAAgEAEAAAAABABAAAAAAAEAAAAABAA=</HashCode>
+      <FileName>AnimationDataSprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Behavior" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACAABAAAiAgAAAAQAAASBAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Behavior.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Camera" Collapsed="true">
+    <Position X="20" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAQAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component" Collapsed="true">
+    <Position X="10" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAAAAAAAAAAAAAAAAACABAAAAQABhAAAAAAAA=</HashCode>
+      <FileName>Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject" Collapsed="true">
+    <Position X="20" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQQIAAgAIFAqAAACIBAAAAUgAJBAiAAIFQEAAeAiAA=</HashCode>
+      <FileName>GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjectHelper" Collapsed="true">
+    <Position X="19" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAEAAAAAACAAAAAAAAABAAAA=</HashCode>
+      <FileName>GameObjectHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectBase" Collapsed="true">
+    <Position X="11" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAAAQAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ObjectBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RigidBody2D" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAKEAIIAAGAAAAABAgCAAAgAAEAAAEAAAQQAABA=</HashCode>
+      <FileName>RigidBody2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteCollider" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAEBAEAAAAAAAAAAAoAAAAAAAAgAAAAg=</HashCode>
+      <FileName>SpriteCollider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteRenderer" Collapsed="true">
+    <Position X="17.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABRIAAGAAABEAAAEAAAAgIABABAQAQAAAEAAAAAoAA=</HashCode>
+      <FileName>SpriteRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine" Collapsed="true">
+    <Position X="28" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIFAAAAAQIABARAKgAACEgkFNAAwCOAAAAIAAAMAAI=</HashCode>
+      <FileName>GameEngine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTime" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIgAAAAAQAAgQBBAACIAAAABAAAIAAAQAAABAgAQAA=</HashCode>
+      <FileName>GameTime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Input" Collapsed="true">
+    <Position X="29" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAgAAAAAAAAACAQANAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Process" Collapsed="true">
+    <Position X="27" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAgAAAAAABAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Process.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renderer" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAAAAAAAAAAAEEBAAAQAAAAICCEABAAAA=</HashCode>
+      <FileName>Renderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DxlibGameTime" Collapsed="true">
+    <Position X="30.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>DxlibGameTime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DxlibInput" Collapsed="true">
+    <Position X="29" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAgAAAA=</HashCode>
+      <FileName>DxlibInput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DxlibProcess" Collapsed="true">
+    <Position X="27" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>DxlibProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DxlibRenderer" Collapsed="true">
+    <Position X="25.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACBAAIAAAAAAAAEEAAAAQAAAAIACEABAAAA=</HashCode>
+      <FileName>DxlibRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockControl" Collapsed="true">
+    <Position X="12.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BlockControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraControl" Collapsed="true">
+    <Position X="6" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CameraControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="24.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAiAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoombaControl" Collapsed="true">
+    <Position X="8.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>GoombaControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarioControl" Collapsed="true">
+    <Position X="10.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAwACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>MarioControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Rect" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAgAAAAAAAAAACAAAQgBAAAAAAAAQAA=</HashCode>
+      <FileName>Common.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Vector" Collapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAUAAAAABAIAQAAAQAAAIAAAEBgAQBCAQA=</HashCode>
+      <FileName>mathmatics.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Matrix" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAQAAAAAAAAAQAgAAAAAAgwAAAAAAA=</HashCode>
+      <FileName>mathmatics.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="メイリオ" Size="9" />
+</ClassDiagram>

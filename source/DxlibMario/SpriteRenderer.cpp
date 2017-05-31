@@ -22,8 +22,8 @@ SpriteRenderer::~SpriteRenderer() {
 void SpriteRenderer::SetSprite(SpritePtr sprite) {
 	_sprite = sprite; 
 
-	_range._right = _sprite->GetWidth();
-	_range._down = _sprite->GetHeight();
+	_rect._right = _sprite->GetWidth();
+	_rect._down = _sprite->GetHeight();
 }
 
 SpritePtr SpriteRenderer::GetSprite() const {
@@ -42,11 +42,11 @@ int SpriteRenderer::GetLayer() const {
 }
 
 const Rect & SpriteRenderer::GetRect() const {
-	return _range;
+	return _rect;
 }
 
-void SpriteRenderer::SetDrawRect(const Rect & rect) {
-	_range = rect;
+void SpriteRenderer::SetRect(const Rect & rect) {
+	_rect = rect;
 }
 
 void SpriteRenderer::SetPivot(int x, int y) {
@@ -69,10 +69,10 @@ void SpriteRenderer::RenderSprite() {
 	pos.x -= _pivotX;
 	pos.y -= _pivotY;
 
-	Rect tmpRect(_range);
+	Rect tmpRect(_rect);
 
-	tmpRect._down = _range._down - _range._up;
-	tmpRect._right = _range._right - _range._left;
+	tmpRect._down = _rect._down - _rect._up;
+	tmpRect._right = _rect._right - _rect._left;
 
 	sRenderer->RenderRectSprite(pos, tmpRect, _sprite, _reverse);
 }

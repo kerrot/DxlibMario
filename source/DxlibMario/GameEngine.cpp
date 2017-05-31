@@ -20,6 +20,7 @@ GameEngine::GameEngine( )
 , _input(DxlibInputPtr(new DxlibInput)) 
 , _process(DxlibProcessPtr(new DxlibProcess))
 ,_gameTime(DxlibGameTimePtr(new DxlibGameTime)){
+	// create main camera
 	CreateCamera();
 }
 
@@ -124,7 +125,7 @@ void GameEngine::Run() {
 
 		_input->UpdateKey();
 
-		CheckCollider();
+		CheckCollision();
 
 		UpdateObject();
 
@@ -160,6 +161,7 @@ void GameEngine::RenderObject() {
 		}
 	}
 
+	// for layer reason
 	RenderSprite();
 }
 
@@ -177,7 +179,7 @@ void GameEngine::RenderSprite() {
 	}
 }
 
-void GameEngine::CheckCollider() {
+void GameEngine::CheckCollision() {
 	for (std::map<int, GameObjectPtr>::iterator iter1 = _objects.begin();
 		iter1 != _objects.end(); ++iter1) {
 		
@@ -188,12 +190,14 @@ void GameEngine::CheckCollider() {
 				if (iter2->second->IsEnabled() &&
 					iter1->second->_collider && iter1->second->_collider->IsEnabled() &&
 					iter2->second->_collider && iter2->second->_collider->IsEnabled()) {
+
+						// need to shift to global coordinate
 						Rect rect1(iter1->second->_collider->GetRect()), rect2(iter2->second->_collider->GetRect());
 						rect1.Shift((int)iter1->second->GetGlobalPosition().x, (int)iter1->second->GetGlobalPosition().y);
 						rect2.Shift((int)iter2->second->GetGlobalPosition().x, (int)iter2->second->GetGlobalPosition().y);
 
 						if (Rect::IsCollision(rect1, rect2)) {
-
+							// trigger collision event
 							GameObjectCollision(iter1->second, iter2->second);
 							GameObjectCollision(iter2->second, iter1->second);
 							break;

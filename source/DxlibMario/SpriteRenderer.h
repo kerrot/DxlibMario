@@ -20,27 +20,28 @@ public:
 	int GetLayer() const;
 
 	const Rect& GetRect() const;
-	void SetDrawRect(const Rect & rect);
+	void SetRect(const Rect & rect);
 
+	//the center point of rotation
 	void SetPivot(int x, int y);
 	void GetPivot(int& x, int& y);
 
+	//flip horizontal 
 	void SetReverse(bool v);
 
 private:
 	SpriteRenderer();
 
 	virtual void OnDestroy();
+private:
+	bool _reverse; // is  horizontal flipped
 
-	SpritePtr _sprite;
-	Rect _range;
-
-	bool _partOnly;
 	int _layer;
 
 	int _pivotX;
 	int _pivotY;
 
-	bool _reverse;
+	SpritePtr _sprite; //source sprite
+	Rect _rect; //local 
 };
 

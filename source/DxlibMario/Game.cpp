@@ -55,7 +55,7 @@ void Game::Init() {
 	spriteRenderer = obj->AddSpriteRenderer();
 	sprite = sGameEngine->LoadSprite("Resources/player0.png");
 	spriteRenderer->SetSprite(sprite);
-	spriteRenderer->SetDrawRect(Rect(16, 16));
+	spriteRenderer->SetRect(Rect(16, 16));
 	spriteRenderer->SetPivot(8, 16);
 
 
@@ -67,7 +67,7 @@ void Game::Init() {
 		spriteRenderer = obj->AddSpriteRenderer();
 		sprite = sGameEngine->LoadSprite("Resources/map.png");
 		spriteRenderer->SetSprite(sprite);
-		spriteRenderer->SetDrawRect(Rect(48, 64, 64, 80));
+		spriteRenderer->SetRect(Rect(48, 64, 64, 80));
 		obj->AddSpriteCollider();
 	}
 
@@ -77,7 +77,7 @@ void Game::Init() {
 	spriteRenderer = obj->AddSpriteRenderer();
 	sprite = sGameEngine->LoadSprite("Resources/map.png");
 	spriteRenderer->SetSprite(sprite);
-	spriteRenderer->SetDrawRect(Rect(80, 96, 16, 32));
+	spriteRenderer->SetRect(Rect(80, 96, 16, 32));
 	obj->AddSpriteCollider();
 	obj->AddBehavior(BlockControlPtr(new BlockControl));
 
