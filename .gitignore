@@ -34,7 +34,6 @@ bin/Log.txt
 /source/.vs/DxlibMario/v14/*.suo
 /source/*.db
 /source/DxlibMario/Debug
-/source/DxlibMario/*.user
 *.suo
 *.opensdf
 *.sdf
