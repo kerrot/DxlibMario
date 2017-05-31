@@ -17,4 +17,5 @@ struct Rect {
 	void Shift(int x, int y);
 };
 
+// check if two segment overlapped
 bool LineSegmentOverlap(int segment1min, int segment1max, int segment2min, int segment2max);

@@ -10,7 +10,7 @@
 int GameObject::guid = 0;
 
 GameObject::GameObject() 
-: _guid(++guid) {
+: _guid(++guid) { //automatically generate guid
 
 }
 
@@ -66,7 +66,7 @@ void GameObject::UpdateAnimation() {
 void GameObject::Destroy() {
 	for (std::list<ComponentPtr>::const_iterator iter = _components.begin();
 		iter != _components.end(); ++iter) {
-			
+		// release the pointer to gameobject
 		(*iter)->Destroy();
 	}
 }
@@ -106,7 +106,7 @@ SpriteRendererPtr GameObject::AddSpriteRenderer() {
 
 		_components.push_back(tmp);
 		_spriteRenderer = tmp;
-		_spriteRenderer->SetLayer(0);
+		_spriteRenderer->SetLayer(0);	// default layer 0
 	}
 
 	return _spriteRenderer;
@@ -144,19 +144,22 @@ void GameObject::Render() {
 }
 
 void GameObject::Update() {
+
+	// call start before first update
 	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
 		iter != _behaviours.end(); ++iter) {
 		if ((*iter)->IsEnabled()) {
 			(*iter)->InitBehavior();
 		}
 	}
-	
+	// update position and trigger collision event
 	if (_rigidBody2D && _rigidBody2D->IsEnabled()) {
 		_rigidBody2D->Update();
 	}
-	
+	// collision exit
 	UpdateCollision();
 
+	// run custom script
 	for (std::list<BehaviorPtr>::const_iterator iter = _behaviours.begin();
 		iter != _behaviours.end(); ++iter) {
 		if ((*iter)->IsEnabled()) {
@@ -192,14 +195,17 @@ void GameObject::AddBehavior(BehaviorPtr ptr) {
 }
 
 void GameObject::SetParent(GameObjectPtr obj) {
+	// clear parent. need to remove the record in parent's child list
 	if (_parent != 0 && obj == 0) {
 		GameObjectHelper::RemoveGameObjectChildren(_parent, std::dynamic_pointer_cast<GameObject>(shared_from_this()));
 	}
 
 	_parent = obj;
 
+	// add child
 	GameObjectHelper::AddToGameObjectChildren(obj, std::dynamic_pointer_cast<GameObject>(shared_from_this()));
 
+	// update local position
 	Vector parentPos = (obj == 0) ? Vector() : obj->GetGlobalPosition();
 	_localPosition = _globalPosition - parentPos;
 }

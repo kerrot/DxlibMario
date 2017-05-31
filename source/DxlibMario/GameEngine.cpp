@@ -31,16 +31,16 @@ GameEngine::~GameEngine( ) {
 
 SpritePtr GameEngine::LoadSprite(const char * filename)
 {
-	std::map<std::string, SpriteData>::const_iterator iter = _sprites.find(filename);
-	if (iter != _sprites.end())
+	std::map<std::string, ImageData>::const_iterator iter = _images.find(filename);
+	if (iter != _images.end())
 	{
 		return SpritePtr(new Sprite(iter->second.num, iter->second.width, iter->second.height));
 	}
 
-	SpriteData data;
+	ImageData data;
 	data.num = _renderer->LoadSprite(filename);
 	_renderer->GetSpriteSize(data.num, &data.width, &data.height);
-	_sprites[filename] = data;
+	_images[filename] = data;
 
 	return SpritePtr(new Sprite(data.num, data.width, data.height));
 }

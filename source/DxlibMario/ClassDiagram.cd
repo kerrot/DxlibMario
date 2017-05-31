@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Comment CommentText="GameEngine  generates core parts:&#xD;&#xA;	Renderer		for rendering method&#xD;&#xA;	Process		for windows message&#xD;&#xA;	Input		for keyboard input&#xD;&#xA;	GameTime		for time used in game&#xD;&#xA;&#xD;&#xA;It is easy to switch base SDK by createing drived classes and overriding the abstract class.&#xD;&#xA;Thus, the whole system not dependent on any SDK, game engine can choose which SDK to use.&#xD;&#xA;&#xD;&#xA;*Now only implement Dxlib">
+  <Comment CommentText="Game engine is the core system of all functions. All object and componet create from here.&#xD;&#xA;&#xD;&#xA;GameEngine  generates core parts:&#xD;&#xA;	Renderer		for rendering method&#xD;&#xA;	Process		for windows message&#xD;&#xA;	Input		for keyboard input&#xD;&#xA;	GameTime		for time used in game&#xD;&#xA;&#xD;&#xA;It is easy to switch base SDK by createing drived classes and overriding the abstract class.&#xD;&#xA;Thus, the whole system not dependent on any SDK, game engine can choose which SDK to use.&#xD;&#xA;&#xD;&#xA;*Now only implement Dxlib">
     <Position X="32.604" Y="0.5" Height="3.561" Width="5.468" />
   </Comment>
   <Comment CommentText="Base structure about Math">
@@ -9,14 +9,20 @@
   <Comment CommentText="Object system">
     <Position X="13.314" Y="0.508" Height="0.787" Width="1.775" />
   </Comment>
-  <Comment CommentText="Custom Script">
+  <Comment CommentText="Custom Script used in game">
     <Position X="6.013" Y="6.201" Height="0.34" Width="8.188" />
   </Comment>
   <Comment CommentText="An animation has one animation clip with several key frame(Animation Data)">
     <Position X="3.524" Y="4.643" Height="0.787" Width="1.775" />
   </Comment>
+  <Comment CommentText="Sprite class hold the original data of Image">
+    <Position X="16.128" Y="6.211" Height="0.361" Width="3.021" />
+  </Comment>
+  <Comment CommentText="For cross gameobject usage">
+    <Position X="18.711" Y="0.5" Height="0.361" Width="1.98" />
+  </Comment>
   <Class Name="Sprite" Collapsed="true">
-    <Position X="15.5" Y="5" Width="1.5" />
+    <Position X="16.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACEAAAAAAgAAABABBAAAAAQAAAgAEAAAAI=</HashCode>
       <FileName>Sprite.h</FileName>
@@ -95,7 +101,7 @@
   <Class Name="GameObject" Collapsed="true">
     <Position X="20" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQQIAAgAIFAqAAACIBAAAAUgAJBAiAAIFQEAAeAiAA=</HashCode>
+      <HashCode>ABQQIAAgAIFAKAAACIBAAAAUgAJBAiAAIFQEAAeAiAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -130,14 +136,14 @@
   <Class Name="SpriteRenderer" Collapsed="true">
     <Position X="17.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BABRIAAGAAABEAAAEAAAAgIABABAQAQAAAEAAAAAoAA=</HashCode>
+      <HashCode>BABRIAAGAAABEQAAAAAAAAIABABAQAQAAAEAAAAAoAA=</HashCode>
       <FileName>SpriteRenderer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine" Collapsed="true">
     <Position X="28" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQIFAAAAAQIABARAKgAACEgkFNAAwCOAAAAIAAAMAAI=</HashCode>
+      <HashCode>AQAFAAAAAQICBARAKgAACEgkFNAAwCOAAAAIAAAMAAI=</HashCode>
       <FileName>GameEngine.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -212,7 +218,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Game" Collapsed="true">
-    <Position X="24.75" Y="5.5" Width="1.5" />
+    <Position X="9" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAiAAAAAAAACAAAAAAI=</HashCode>
       <FileName>Game.h</FileName>

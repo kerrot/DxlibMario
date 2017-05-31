@@ -4,8 +4,9 @@
 
 PTR(AnimationDataPosition)
 
+// change gameobject position. interpolation. 
 class AnimationDataPosition : public AnimationData {
-	friend class AnimationProperty;
+	friend class AnimationProperty;	//can only created by AnimationProperty
 public:
 	virtual ~AnimationDataPosition();
 

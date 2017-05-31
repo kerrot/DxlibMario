@@ -47,7 +47,7 @@ void Animation::Update() {
 	_current += (__int64)((double)deltaTime * _animationSpeed);
 
 	if (clipTime > 0) {
-		_current %= clipTime;
+		_current %= clipTime;	// replay when end
 	}
 }
 

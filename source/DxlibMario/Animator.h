@@ -7,6 +7,7 @@ PTR( Animator )
 PTR( AnimationState )
 PTR( GameObject )
 
+// animation state (translate to different animation clip)
 class Animator: public Component {
 friend class GameObject;
 public:
@@ -26,7 +27,7 @@ private:
 
 	AnimationStatePtr _currentState;
 
-	bool _unscaledTime;
+	bool _unscaledTime;			//play even when game pause
 	__int64 _currentTime;
 	double _animationSpeed;
 };

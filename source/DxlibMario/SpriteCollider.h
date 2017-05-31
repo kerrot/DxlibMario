@@ -8,7 +8,7 @@ PTR( SpriteCollider )
 PTR( GameObject )
 
 class SpriteCollider : public Component {
-	friend class GameObject;
+	friend class GameObject; // only gameobject can create this component
 public:
 	virtual ~SpriteCollider();
 

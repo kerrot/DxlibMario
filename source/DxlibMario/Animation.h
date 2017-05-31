@@ -5,7 +5,7 @@ PTR (Animation)
 PTR (AnimationClip)
 
 class Animation : public Component {
-friend class GameObject;
+friend class GameObject;	// can only created by gameobject
 public:
 	virtual ~Animation();
 
@@ -23,11 +23,11 @@ public:
 private:
 	Animation();
 
-	AnimationClipWPtr _clip;
-	
+private:
 	bool _pause;
-	bool _unscaledTime;
+	bool _unscaledTime;		//play even when game pause
 
+	AnimationClipWPtr _clip;
 
 	__int64 _current;
 	double _animationSpeed;

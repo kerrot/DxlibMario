@@ -3,13 +3,6 @@
 #include "AnimationDataSprite.h"
 #include "AnimationDataEnable.h"
 
-__int64 AnimationProperty::KeyMaxTime() {
-	if (_keys.empty()) {
-		return 0;
-	}
-
-	return _keys.rbegin()->first;
-}
 
 AnimationProperty::AnimationProperty(AnimationPropertyType type)
 : _type(type) {
@@ -19,6 +12,13 @@ AnimationProperty::AnimationProperty(AnimationPropertyType type)
 AnimationProperty::~AnimationProperty() {
 }
 
+__int64 AnimationProperty::KeyMaxTime() {
+	if (_keys.empty()) {
+		return 0;
+	}
+
+	return _keys.rbegin()->first;
+}
 
 void AnimationProperty::Update(__int64 time, GameObjectPtr ptr) {
 	if (_keys.empty()) {
@@ -28,10 +28,11 @@ void AnimationProperty::Update(__int64 time, GameObjectPtr ptr) {
 	AnimationDataPtr before, end;
 	GetData(time, before, end);
 
+	//interpolation. 
 	before->Apply(time, ptr, end);
 }
 
-void AnimationProperty::GetData(__int64 time, AnimationDataPtr & before, AnimationDataPtr & end) {
+void AnimationProperty::GetData(__int64 time, AnimationDataPtr & before, AnimationDataPtr & after) {
 	std::map<__int64, AnimationDataPtr>::iterator data = _keys.begin();
 	std::map<__int64, AnimationDataPtr>::iterator iter = data;
 	for (; iter != _keys.end(); ++iter) {
@@ -44,7 +45,7 @@ void AnimationProperty::GetData(__int64 time, AnimationDataPtr & before, Animati
 	}
 
 	before = data->second;
-	end = (iter == _keys.end()) ? data->second : iter->second;
+	after = (iter == _keys.end()) ? data->second : iter->second;
 }
 
 AnimationDataPtr AnimationProperty::AddKey(__int64 time) {

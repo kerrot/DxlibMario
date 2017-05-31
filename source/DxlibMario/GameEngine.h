@@ -15,15 +15,13 @@ PTR( SpriteRenderer );
 PTR( AnimationClip );
 PTR( GameTime );
 
+//Create object and component from here
 class GameEngine {
 
 friend class SpriteRenderer; // for layer setup
 public:
 	static GameEnginePtr GetInstance();
 	virtual ~GameEngine();
-
-	//               guid
-	typedef std::map<int, SpriteRendererPtr> SpriteMap;
 
 	SpritePtr LoadSprite(const char* filename);
 
@@ -41,7 +39,7 @@ public:
 
 	// get all object in game
 	const std::map<int, GameObjectPtr>& GetGameObjects();
-	// remove object in game, fist remove in scene and put to wait list,  will destroy in the end of frame
+	// remove object in game, first remove in scene and put to wait list,  will destroy in the end of frame
 	void DestroyObject(GameObjectPtr obj);
 	//main loop
 	void Run();
@@ -64,24 +62,27 @@ private:
 	RendererPtr _renderer;
 	InputPtr _input;
 	ProcessPtr _process;
-	CameraPtr _mainCamera;
 	GameTimePtr _gameTime;
+	CameraPtr _mainCamera;
 
-	struct SpriteData {
+	struct ImageData {
 		int num;
 		int width;
 		int height;
 	};
 	//       filename
-	std::map<std::string, SpriteData> _sprites;
+	std::map<std::string, ImageData> _images;		//store base data of images
 	//      guid
-	std::map<int, GameObjectPtr> _objects;
-	std::map<int, GameObjectPtr> _waitForDelete;
+	std::map<int, GameObjectPtr> _objects;			//all gameobject in game
+	std::map<int, GameObjectPtr> _waitForDelete;	//gameobject waiting to destroy
+
+	//               guid
+	typedef std::map<int, SpriteRendererPtr> SpriteMap;
 
 	//       layer
-	std::map<int, SpriteMap> _layerSprite;
+	std::map<int, SpriteMap> _layerSprite;			//sprites stored in layer
 	//       clip name
-	std::map<std::string, AnimationClipPtr> _clips;
+	std::map<std::string, AnimationClipPtr> _clips; //all animation clips
 };
 
 #define sGameEngine GameEngine::GetInstance()

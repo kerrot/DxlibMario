@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "GameObject.h"
 
+// for cross gameobject usage
 class GameObjectHelper {
 public:
 	template <class T>

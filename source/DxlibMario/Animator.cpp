@@ -39,7 +39,7 @@ void Animator::Update() {
 
 	__int64 clipTime = _currentState->GetTime();
 	if (clipTime > 0) {
-		_currentTime %= clipTime;
+		_currentTime %= clipTime; // replay when end
 	}
 }
 

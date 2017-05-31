@@ -27,36 +27,39 @@ MarioControl::~MarioControl() {
 }
 
 void MarioControl::Start() {
+	// init animation sitting. move, jump, and dead.
+
 	AnimationClipPtr clip = sGameEngine->CreateAnimationClip("marioMove");
-	AnimationPropertyPtr pro = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
+	AnimationPropertyPtr animeProperty = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
 
 	SpritePtr sprite = sGameEngine->LoadSprite("Resources/player0.png");
-
-	AnimationDataSprite::SetSpriteAnimation(pro->AddPeroidKeys(500, 4), sprite, 16, 16, 16, 0, 8, 16);
+	// generate animation with 500ms period 
+	AnimationDataSprite::SetSpriteAnimation(animeProperty->AddPeroidKeys(500, 4), sprite, 16, 16, 16, 0, 8, 16);
 
 	AnimatorPtr animator = _gameobject->AddAnimator();
 	AnimationStatePtr moveState = animator->AddState("Move");
 	moveState->SetClip(clip);
 
 	clip = sGameEngine->CreateAnimationClip("marioJump");
-	pro = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
-	AnimationDataSpritePtr p = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
-	p->SetSprite(sprite);
-	p->SetDrawRect(Rect(80, 96, 0, 16));
-	p->SetPivot(8, 16);
+	animeProperty = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
+	AnimationDataSpritePtr dataSprite = std::dynamic_pointer_cast<AnimationDataSprite>(animeProperty->AddKey(0));
+	dataSprite->SetSprite(sprite);
+	dataSprite->SetDrawRect(Rect(80, 96, 0, 16));
+	dataSprite->SetPivot(8, 16);
 	AnimationStatePtr jumpState = animator->AddState("Jump");
 	jumpState->SetClip(clip);
 
 
 	clip = sGameEngine->CreateAnimationClip("marioDead");
-	pro = clip->CreateProperty(ANIMATION_PROPERTY_ENABLE);
-	AnimationDataEnablePtr e = std::dynamic_pointer_cast<AnimationDataEnable>(pro->AddKey(0));
-	e->SetEnable(GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject), false);
-	pro = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
-	p = std::dynamic_pointer_cast<AnimationDataSprite>(pro->AddKey(0));
-	p->SetSprite(sprite);
-	p->SetDrawRect(Rect(96, 112, 0, 16));
-	p->SetPivot(8, 16);
+	animeProperty = clip->CreateProperty(ANIMATION_PROPERTY_ENABLE);
+	AnimationDataEnablePtr dataEnable = std::dynamic_pointer_cast<AnimationDataEnable>(animeProperty->AddKey(0));
+	//disable collision when dead
+	dataEnable->SetEnable(GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject), false);
+	animeProperty = clip->CreateProperty(ANIMATION_PROPERTY_SPRITE);
+	dataSprite = std::dynamic_pointer_cast<AnimationDataSprite>(animeProperty->AddKey(0));
+	dataSprite->SetSprite(sprite);
+	dataSprite->SetDrawRect(Rect(96, 112, 0, 16));
+	dataSprite->SetPivot(8, 16);
 	AnimationStatePtr deadState = animator->AddState("Dead");
 	deadState->SetClip(clip);
 
@@ -86,7 +89,7 @@ void MarioControl::Update() {
 		if (renderer) {
 			renderer->SetReverse(true);
 		}
-
+		// not velocity because of Inertia
 		RigidBody2DPtr rigid = GameObjectHelper::GetGameObjectComponent<RigidBody2D>(_gameobject);
 		if (rigid) {
 			rigid->AddAcceleration(Vector(-1, 0));
@@ -117,10 +120,11 @@ void MarioControl::Update() {
 }
 
 void MarioControl::CollisionEnter(GameObjectPtr other) {
+
+	// dead when touch enemy
 	GoombaControlPtr enemy = GameObjectHelper::GetGameObjectComponent<GoombaControl>(other);
 	if (enemy) {
 		_dead = true;
-		//sGameTime->Pause();
 
 		AnimatorPtr animator = GameObjectHelper::GetGameObjectComponent<Animator>(_gameobject);
 		if (animator) {

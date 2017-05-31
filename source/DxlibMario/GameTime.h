@@ -32,11 +32,11 @@ protected:
 protected:
 	bool _pause; // is system pause
 
-	__int64 _current;	//gametime of current frame
-	__int64 _last;		//gametime of last frame
+	__int64 _current;	//current frame's gametime from game start 
+	__int64 _last;		//last frame's gametime from game start 
 
-	__int64 _unpausedCurrent;	//realtime of current frame from game start 
-	__int64 _unpausedLast;		//realtime of last frame from game start 
+	__int64 _unpausedCurrent;	//current frame's realtime from game start 
+	__int64 _unpausedLast;		//last frame's realtime from game start 
 };
 
 #define sGameTime GameTime::GetInstance()

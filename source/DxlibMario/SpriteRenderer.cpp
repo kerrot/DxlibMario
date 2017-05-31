@@ -64,7 +64,7 @@ void SpriteRenderer::RenderSprite() {
 	{
 		return;
 	}
-
+	// calculate the position to screen
 	Vector pos = _gameobject->GetGlobalPosition() - sCamera->GetGlobalPosition();
 	pos.x -= _pivotX;
 	pos.y -= _pivotY;

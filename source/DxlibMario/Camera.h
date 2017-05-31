@@ -4,11 +4,11 @@
 PTR( Camera )
 
 class Camera : public GameObject {
-friend class GameEngine;
+friend class GameEngine; // only gameengine can create camera
 public:
 	virtual ~Camera();
 
-	static CameraPtr GetMainCamera();
+	static CameraPtr GetMainCamera(); // main camera is unique
 
 private:
 	Camera();

@@ -18,11 +18,13 @@ void RigidBody2D::ComputeCollision(int & finalx, int & finaly, GameObjectPtr oth
 	SpriteColliderPtr collider1 = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(_gameobject);
 	SpriteColliderPtr collider2 = GameObjectHelper::GetGameObjectComponent<SpriteCollider>(other);
 
+	//convert to global coordinate to check
 	Rect rect1(collider1->GetRect()), rect2(collider2->GetRect());
 	rect1.Shift((int)_gameobject->GetGlobalPosition().x, (int)_gameobject->GetGlobalPosition().y);
 	rect2.Shift((int)other->GetGlobalPosition().x, (int)other->GetGlobalPosition().y);
 
 	int tmpx = finalx, tmpy = finaly;
+	// compute final position
 	ComputeFinalShift(tmpx, tmpy, rect1, rect2);
 
 	if (abs(tmpx) < abs(finalx)) {
@@ -41,10 +43,14 @@ void RigidBody2D::ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2
 		ComputeSingleShift(x, rect1, rect2, _velocity);
 	}
 	else {
+
+		// determine which direction first
 		bool xfirst = true;
+		//overlap in horizontal direction
 		if (LineSegmentOverlap(rect1._left, rect1._right, rect2._left, rect2._right)) {
 			xfirst = false;
 		}
+		//vertical in ver direction
 		else if (LineSegmentOverlap(rect1._up, rect1._down, rect2._up, rect2._down)) {
 			xfirst = true;
 		}
@@ -60,6 +66,7 @@ void RigidBody2D::ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2
 				xfirst = true;
 			}
 			else {
+				// determine by the rate of width and height
 				double rate = width / height;
 				xfirst = (rate < _velocity.x / _velocity.y);
 			}
@@ -101,20 +108,22 @@ void RigidBody2D::Update() {
 	int finalx, tmpx, finaly, tmpy;
 	finalx = tmpx = (int)_velocity.x;
 	finaly = tmpy = (int)_velocity.y;
+
+	//check only when velocity not zero
 	if (finalx != 0 || finaly != 0) {
 		std::list<GameObjectPtr> hits;
 
 		const std::map<int, GameObjectPtr>& objs = sGameEngine->GetGameObjects();
 		for (std::map<int, GameObjectPtr>::const_iterator iter = objs.begin();
 			iter != objs.end(); ++iter) {
-
+			//check collision
 			if (SpriteCollider::CollideWith(_gameobject, iter->second, _velocity)) {
 				hits.push_back(iter->second);
-
+				//compute final position
 				ComputeCollision(finalx, finaly, iter->second);
 			}
 		}
-
+		// set velocity to zero when collision
 		if (finalx != tmpx) {
 			_velocity.x = 0;
 		}
@@ -123,7 +132,7 @@ void RigidBody2D::Update() {
 		}
 
 		_gameobject->Translate(Vector(finalx, finaly));
-
+		// trigger collision event
 		for (std::list<GameObjectPtr>::iterator iter = hits.begin();
 			iter != hits.end(); ++iter) {
 			GameObjectCollision(_gameobject, *iter);

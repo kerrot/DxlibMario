@@ -6,7 +6,7 @@ PTR( Behavior );
 PTR( GameObject );
 
 class Behavior : public Component {
-	friend class GameObject;
+	friend class GameObject; // for InitBehavior. Automatically call Start before the first update
 public:
 	virtual ~Behavior() = 0;
 

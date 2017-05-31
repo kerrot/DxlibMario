@@ -12,7 +12,7 @@ public:
 	virtual ~AnimationState();
 
 	void SetClip(AnimationClipWPtr clip);
-
+	// update animation clip by time
 	void Update(__int64 time, GameObjectPtr obj);
 
 	__int64 GetTime();

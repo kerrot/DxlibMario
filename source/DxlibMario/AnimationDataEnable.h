@@ -4,8 +4,9 @@
 PTR(AnimationDataEnable)
 PTR(ObjectBase)
 
+// change gameobject visiblity
 class AnimationDataEnable : public AnimationData {
-	friend class AnimationProperty;
+	friend class AnimationProperty;		//can only created by AnimationProperty
 public:
 	virtual ~AnimationDataEnable();
 

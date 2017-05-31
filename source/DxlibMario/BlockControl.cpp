@@ -31,6 +31,8 @@ void BlockControl::Start() {
 }
 
 void BlockControl::Update() {
+
+	// moving block. for collision testing
 	if (sInput->GetKey("A")) {
 		AnimationPtr animation = GameObjectHelper::GetGameObjectComponent<Animation>(_gameobject);
 		if (animation) {

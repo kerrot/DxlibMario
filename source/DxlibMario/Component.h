@@ -5,7 +5,7 @@ PTR( Component );
 PTR( GameObject );
 
 class Component : public ObjectBase {
-	friend class GameObject;
+	friend class GameObject; // for Destroy
 public:
 	virtual ~Component() = 0;
 	virtual void Render();
@@ -16,7 +16,7 @@ protected:
 
 	virtual void OnDestroy();
 
-	GameObjectPtr _gameobject;
+	GameObjectPtr _gameobject; // the owner gameobject
 
 	bool _enabled;
 

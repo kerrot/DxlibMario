@@ -10,7 +10,7 @@ PTR(GameObject)
 enum AnimationPropertyType;
 
 class AnimationClip {
-	friend class GameEngine;
+	friend class GameEngine;	//every AnimationClip is unique and create by game engine
 public:
 	virtual ~AnimationClip();
 

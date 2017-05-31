@@ -7,7 +7,7 @@ PTR ( SpriteRenderer )
 PTR ( Sprite )
 
 class SpriteRenderer : public Component {
-	friend class GameObject;
+	friend class GameObject; // only gameobject can create this component
 public:
 	virtual ~SpriteRenderer();
 

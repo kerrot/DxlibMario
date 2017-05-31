@@ -8,7 +8,7 @@ PTR( RigidBody2D )
 PTR( GameObject )
 
 class RigidBody2D : public Component {
-friend class GameObject;
+	friend class GameObject; // only gameobject can create this component
 public:
 	virtual ~RigidBody2D();
 
@@ -30,11 +30,11 @@ public:
 private:
 	RigidBody2D();
 
-	void ComputeCollision(int & finalx, int & finaly, GameObjectPtr other);
-	void ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2);
-	void ComputeSingleShift(int& shift, Rect & rect1, Rect & rect2, const Vector& v);
+	void ComputeCollision(int & finalx, int & finaly, GameObjectPtr other); //compute final position when collision
+	void ComputeFinalShift(int & x, int & y, Rect & rect1, Rect & rect2); // determine which direction first
+	void ComputeSingleShift(int& shift, Rect & rect1, Rect & rect2, const Vector& v); //do the compute 
 
-	double _drag;
+	double _drag; //resistance force
 
 	Vector _gravity;
 	Vector _velocity;

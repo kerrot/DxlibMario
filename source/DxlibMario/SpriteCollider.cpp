@@ -12,6 +12,8 @@ SpriteCollider::~SpriteCollider() {
 
 const Rect & SpriteCollider::GetRect() {
 	if (_traceSprite) {
+		// Compute the range according to SpriteRenderer setting
+
 		SpriteRendererPtr renderer = GameObjectHelper::GetGameObjectComponent<SpriteRenderer>(_gameobject);
 		if (renderer) {
 			int x, y;
@@ -51,6 +53,7 @@ bool SpriteCollider::CollideWith(GameObjectPtr obj, GameObjectPtr other, const V
 	int height = rect2._down - rect2._up + rect1._down - rect1._up;
 	int minLength = (width > height) ? height : width;
 
+	//check the collision step by step with minLength to prevent penetration
 	double oriLength = velocity.getLength();
 	if (oriLength > minLength) {
 		Vector normalized = velocity.normalize();

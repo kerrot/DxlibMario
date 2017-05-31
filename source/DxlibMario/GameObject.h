@@ -14,8 +14,8 @@ PTR( Animator )
 PTR( Animation )
 
 class GameObject : public ObjectBase {
-	friend class GameEngine;
-friend class GameObjectHelper;
+	friend class GameEngine;	// only game engine can create gameobject
+	friend class GameObjectHelper; // for access other gameobject data
 public:
 	virtual ~GameObject();
 	
@@ -24,7 +24,7 @@ public:
 	void Render();
 
 	void Update();
-	void LastUpdate();
+	void LastUpdate(); // update after all update done
 
 	SpriteColliderPtr AddSpriteCollider();
 	RigidBody2DPtr AddRigidBody2D();
@@ -46,21 +46,15 @@ public:
 protected:
 	GameObject();
 
-	friend void GameObjectCollision(GameObjectPtr obj, GameObjectPtr other);
+	// call by game engine and rigidbody to trigger collision event
+	friend void GameObjectCollision(GameObjectPtr obj, GameObjectPtr other); 
+	// check the collsion exit
 	void UpdateCollision();
 	void UpdateAnimation();
 
-	Vector _localPosition;
-	Vector _globalPosition;
-
-	GameObjectPtr _parent;
-	std::map<int, GameObjectPtr> _children;
-	std::list<ComponentPtr> _components;
-	std::list<BehaviorPtr> _behaviours;	
-
-	
-	int _guid;
-	static int guid;
+protected:
+	int _guid;	// the unique number in the system
+	static int guid; // counter for guid
 
 	SpriteRendererPtr _spriteRenderer;
 	RigidBody2DPtr _rigidBody2D;
@@ -71,10 +65,17 @@ protected:
 	AnimatorPtr _animator;
 	AnimationPtr _animation;
 
-	std::map<int, SpriteColliderPtr> _colliderObjs;
+	GameObjectPtr _parent;
+	
+	Vector _localPosition;
+	Vector _globalPosition;
+	
+	std::map<int, GameObjectPtr> _children;
+	std::list<ComponentPtr> _components;	// build in component
+	std::list<BehaviorPtr> _behaviours;		// custom script
 
 private:
-	void Destroy();
+	void Destroy(); // called when gameengine destroy gameobject
 };
 
 

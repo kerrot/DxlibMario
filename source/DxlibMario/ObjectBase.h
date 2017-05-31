@@ -13,6 +13,6 @@ public:
 protected:
 	ObjectBase();
 
-	bool _enable;
+	bool _enable;	//visible in game
 };
 
