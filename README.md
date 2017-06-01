@@ -7,7 +7,7 @@ You can create custom script like what you do in unity.
 It supports functions like Start, Update, CollisionEnter...etc.
 
 This game engine supports several functions below: <br />
-1. Object Hierarchy.(set object relations: parent and child)
+1. Object Hierarchy.(parent and child)
 2. Physics. (RigidBody, Collider)
 3. Animation (state machine, key frame...etc.)
 * It's better to understand this systum by class diagram in the DMEngine project.
