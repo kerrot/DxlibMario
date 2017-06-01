@@ -1,6 +1,6 @@
 # DxlibMario
 DMEngine is a 2d game engine emulated unity.  
-Its data structure and main loop are all based on unity design.
+Its data structure and main loop are all based on unity design.  
 You can create custom script like what you do in unity.  
 It supports functions like Start, Update, CollisionEnter...etc.
 
