@@ -14,4 +14,4 @@ This game engine supports several functions below: <br />
 DMEngine is built as static library.  
 You can find the lib file in the Lib folder inside DMEngine folder. Both Release version and Debug version(end with _d).  
 To setup, you need to set the additional include and library directories in the project setting.  
-There is a example project(DxlibMario). It shows the way to setting and sample of custom script. 
+There is a example project(DxlibMario). It shows the way to setting and also samples of custom script. 
