@@ -1,9 +1,8 @@
 #pragma once
-#include "smart_ptr.h"
+#include "AnimationClip.h"
 #include <string>
 
 PTR( AnimationState )
-PTR( AnimationClip )
 PTR( GameObject )
 
 class AnimationState {
