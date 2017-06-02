@@ -2,8 +2,8 @@
 DxlibMario is a test project to verify the function of DMEngine.   
 DMEngine is a 2d game engine emulated unity.   
 The graphic SDK used in this engine is DXLib (https://ja.wikipedia.org/wiki/DX%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA).  
-Its data structure and main loop are all based on unity design.   
-You can create custom script like what you do in unity.  
+Its data structure and main loop are all based on unity design.    
+You can create custom script like what you do in unity.    
 It supports functions like Start, Update, CollisionEnter...etc.
 
 This game engine supports several functions below: <br />
