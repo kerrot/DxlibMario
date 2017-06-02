@@ -1,5 +1,4 @@
 #include "AnimationState.h"
-#include "AnimationClip.h"
 
 AnimationState::AnimationState(const char* name) 
 : _name(name) {

@@ -5,7 +5,7 @@
 
 PTR( Animator )
 PTR( AnimationState )
-PTR( GameObject )
+
 
 // animation state (translate to different animation clip)
 class Animator: public Component {
